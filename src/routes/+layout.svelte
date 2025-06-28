@@ -1,6 +1,8 @@
 <script lang="ts">
+    import { injectAnalytics } from '@vercel/analytics/sveltekit'
+    import "../app.css";
 	let { children } = $props();
-      import "../app.css";
+    injectAnalytics();
 </script>
 
 {#if import.meta.env.PROD}
