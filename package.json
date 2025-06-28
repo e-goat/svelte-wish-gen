@@ -39,6 +39,7 @@
         "@prisma/client": "^6.9.0",
         "@prisma/extension-accelerate": "^2.0.1",
         "@tailwindcss/vite": "^4.1.10",
+        "bindings": "^1.5.0",
         "slug": "^11.0.0",
         "tailwindcss": "^4.1.10",
         "vite-plugin-commonjs": "^0.10.4"
