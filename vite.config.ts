@@ -13,5 +13,12 @@ export default defineConfig({
     ],
     define: {
         __dirname: 'import.meta.dirname',
+        global: 'globalThis',
+    },
+    ssr: {
+        noExternal: ['@prisma/client'],
+    },
+    optimizeDeps: {
+        include: ['@prisma/client'],
     },
 })
