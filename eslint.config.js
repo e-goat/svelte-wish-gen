@@ -7,5 +7,15 @@ import eslintConfigPrettier from 'eslint-config-prettier/flat'
 export default tseslint.config(
     eslint.configs.recommended,
     tseslint.configs.recommended,
-    eslintConfigPrettier
+    eslintConfigPrettier,
+    {
+        ignores: [
+            'node_modules/*',
+            '.svelte-kit/*',
+            '**/*.svelte',
+            'prisma/*',
+            'src/lib/assets/*',
+            'src/lib/db/*',
+        ],
+    }
 )

@@ -37,11 +37,11 @@ let currentCard: CurrentCard = {
 }
 
 let mediaRecorder: MediaRecorder | null = null
-let recordingTimer: number | null = null
+let recordingTimer: ReturnType<typeof setInterval> | null = null
 let recordingStartTime: number = 0
 let isRecording: boolean = false
 
-const templates: Record<TemplateNames, Template> = {
+export const templates: Record<TemplateNames, Template> = {
     birthday: {
         icon: '🎂',
         title: 'Happy Birthday!',
@@ -468,7 +468,6 @@ function createMessageLines(
         lines.push(currentLine)
     }
 
-    // Limit to 8 lines max
     const displayLines: string[] = lines.slice(0, 8)
     if (lines.length > 8) {
         displayLines[7] = displayLines[7] + '...'
@@ -479,7 +478,7 @@ function createMessageLines(
             (line: string, index: number) =>
                 `<text x="${x}" y="${startY + index * 24}" class="card-text message-text">${escapeXml(line)}</text>`
         )
-        .join('\n                    ')
+        .join('\n')
 }
 
 function escapeXml(text: string): string {
@@ -607,7 +606,7 @@ export function resetCard(): void {
 }
 
 function createCard(data: CardPayload): Promise<Response> {
-    return fetch('/api/add', {
+    return fetch('/api/card/add', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -617,7 +616,7 @@ function createCard(data: CardPayload): Promise<Response> {
 }
 
 async function getCard(slug: string) {
-    let url: string = '/api/get/' + slug
+    const url: string = '/api/card/get/' + slug
     const response = await fetch(url)
     if (!response.ok) {
         throw new Error(`Response status: ${response.status}`)

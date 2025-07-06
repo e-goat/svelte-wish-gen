@@ -1,39 +1,37 @@
 <script lang="ts">
     import { injectAnalytics } from '@vercel/analytics/sveltekit'
-    import "../app.css";
-    import stepimg from "$lib/assets/step-1.svg";
-	let { children } = $props();
-    injectAnalytics();
+    import '../app.css'
+    import logo from '$lib/assets/logo.jpg'
+    import NavItem from '$lib/components/NavItem.svelte';
+    import Footer from '$lib/components/Footer.svelte'
+
+    let { children } = $props()
+    injectAnalytics()
 </script>
 
-{#if import.meta.env.PROD}
-    <main class="px-4 md:px-8 mx-auto max-w-7xl flex flex-col items-center min-h-screen">
-        <div class="flex flex-col items-center justify-center shadow-lg my-6 rounded-xl bg-amber-200/50 p-6">
-            <h1 class="text-3xl font-bold mb-4">Coming Soon</h1>
-            <p class="text-lg">
-                KartichkaQR is your favorite wish card generator—create personalized, beautiful cards for any occasion in seconds. Stay tuned for the easiest way to send heartfelt wishes!
-            </p>
-            <div class="flex items-center">
-                <img
-                alt="Step 1"
-                src={stepimg}
-                class="w-[32rem] h-auto object-contain lg:ml-auto drop-shadow-lg"
-                style="max-height: 28rem;"
-                />
-            </div>
-        </div>
-    </main>
-{:else}
-    <main class="px-4 md:px-8 mx-auto max-w-7xl">
-        <nav class="flex justify-between border border-amber-600">
-            <div>#logo</div>
-            <ul class="flex justify-center items-center gap-2">
-                <li>Home</li>
-                <li>About us</li>
-            </ul>
-        </nav>
-        <div class="py-6 md:py-10 flex justify-center items-start lg:items-center">
-            {@render children()}
-        </div>
-    </main>
-{/if}
+<main class="flex flex-col min-h-screen h-full px-4 md:px-8 mx-auto max-w-7xl">
+    <nav
+        class="top-5 z-30 flex flex-row justify-between items-center pt-4 p-4 mb-4">
+        <a
+            href="/"
+            class="flex items-center gap-2 text-amber-600 font-bold text-lg hover:text-amber-800 transition-colors"
+            aria-label="Home">
+            <img
+                alt="KartichkaQR Logo"
+                src={logo}
+                class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover shadow" />
+        </a>
+        <ul
+            class="flex-col md:flex-row flex md:flex gap-4 md:gap-6 items-center mt-2 md:mt-0">
+            <li>
+                <NavItem text="Create" target="/create" />
+                <NavItem text="About" target="/about" />
+            </li>
+        </ul>
+    </nav>
+    <div
+        class="flex flex-1 justify-center items-start lg:items-center">
+        {@render children()}
+    </div>
+    <Footer />
+</main>
