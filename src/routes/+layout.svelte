@@ -24,7 +24,7 @@
         <ul
             class="flex-col md:flex-row flex md:flex gap-4 md:gap-6 items-center mt-2 md:mt-0">
             <li>
-                <NavItem text="Create" target="/create" />
+                <NavItem text="Home" target="/" />
                 <NavItem text="About" target="/about" />
             </li>
         </ul>
