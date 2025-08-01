@@ -13,3 +13,9 @@ export async function createCard(data: Prisma.CardCreateInput) {
         data,
     })
 }
+
+export async function getAllTemplates() {
+    return prisma.template.findMany({
+        orderBy: { createdAt: 'desc' },
+    })
+}
