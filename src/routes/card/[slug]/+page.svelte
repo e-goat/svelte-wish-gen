@@ -27,7 +27,7 @@
         font-size: 16px;
         font-weight: 600;
         text-decoration: none;
-        transition: all 0.3s ease;
+        transition: background-color 0.3s, transform 0.2s;
         cursor: pointer;
         border: none;
         min-width: 200px;

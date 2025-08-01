@@ -115,7 +115,7 @@
                     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {#each features as feature, i}
                         <div
-                            class="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-green-100 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer"
+                            class="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-green-100 hover:shadow-xl hover:scale-105 transition-shadow duration-300 cursor-pointer"
                             in:fly={{
                                 y: 50,
                                 duration: 600,
@@ -152,7 +152,7 @@
                 <div class="grid gap-8 grid-cols-1 md:grid-cols-2">
                     {#each teamMembers as member, i}
                         <div
-                            class="bg-gradient-to-b from-white/70 to-white-30 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-green-200 hover:shadow-xl transition-all duration-300 text-center group"
+                            class="bg-gradient-to-b from-white/70 to-white-30 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-green-200 hover:shadow-xl transition-shadow duration-300 text-center group"
                             in:fly={{
                                 y: 50,
                                 duration: 600,
@@ -206,7 +206,7 @@
                                 cards.
                             </p>
                             <a
-                                class="block w-full md:inline-block bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-center"
+                                class="block w-full md:inline-block bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-shadow duration-300 text-center"
                                 href="/create">
                                 Start Creating Now
                             </a>

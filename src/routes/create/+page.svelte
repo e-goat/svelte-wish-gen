@@ -5,13 +5,15 @@
     import Record from "$lib/components/stepper/Record.svelte";
     import Review from "$lib/components/stepper/Review.svelte";
     import { ss } from "$lib/state.svelte";
-</script>
+    import type { PageProps } from './$types';
 
+    let { data }: PageProps = $props();
+</script>
 <Stepper steps={4}>
     {#if ss.currentStep == 1}
         <Intro />
     {:else if ss.currentStep == 2}
-        <Design />
+        <Design {data}/>
     {:else if ss.currentStep == 3}
         <Record />
     {:else if ss.currentStep == 4}
