@@ -1,7 +1,7 @@
 <script lang="ts">
     export let ariaLabel: string
     export let text: string
-    export let clickEvent: (event: MouseEvent) => void
+    export let clickEvent: ((event: MouseEvent) => void) | undefined = undefined
     export let float:
         |
         'right' |
