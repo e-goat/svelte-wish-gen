@@ -5,6 +5,9 @@
     --color-amber-111: #ffede4;
     --color-custom-teal-200: #93e0a2;
     --color-custom-teal-300: #92da9f;
+    --color-custom-orange-200: #ffde82;
+    --color-custom-orange-400: #caa74e;
+    --color-custom-orange-600: #917319;
     --default-font-family: 'Chiron Sung HK', serif;
     /* --default-font-family: 'Roboto', sans-serif; */
     --default-font-variation-settings: 'wght' 550;
@@ -18,21 +21,4 @@
     cursor: not-allowed;
     filter: grayscale(0.4);
     border: none;
-}
-
-.wish-card {
-    transition:
-        transform 0.2s,
-        box-shadow 0.2s;
-}
-
-.wish-card:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
-
-@media (max-width: 640px) {
-    .wish-card {
-        padding: 1.25rem;
-    }
 }
