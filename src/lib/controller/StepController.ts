@@ -1,4 +1,4 @@
-import { ss, cs } from '$lib/state.svelte'
+import { ss } from '$lib/state.svelte'
 import { error } from '@sveltejs/kit'
 
 export async function defineStepperEvent(
