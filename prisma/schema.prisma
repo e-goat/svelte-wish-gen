@@ -20,6 +20,8 @@ model Card {
   templateId  Int
   title       String
   description String
+  sender      String?
+  receiver    String?
   slug        String   @unique
   createdAt   DateTime @default(now())
 }
