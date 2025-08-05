@@ -7,7 +7,8 @@
     import Record from '$lib/components/stepper/Record.svelte'
     import Review from '$lib/components/stepper/Review.svelte'
     import { ss } from '$lib/state.svelte'
-    let { data, form}: PageProps & { form: ActionData } = $props()
+
+    let { data, form }: PageProps & { form: ActionData } = $props()
 </script>
 
 <Stepper steps={4} {form}>

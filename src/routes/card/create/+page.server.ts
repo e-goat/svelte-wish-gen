@@ -1,9 +1,10 @@
 import type { PageServerLoad } from '../../create/$types'
 import type { Actions } from '@sveltejs/kit'
-import { createCard } from '$lib/server/database'
 
 import * as db from '$lib/server/database'
 import { fail } from '@sveltejs/kit'
+import { createCard } from '$lib/server/database'
+import { Prisma } from '$lib/db'
 
 export const load: PageServerLoad = async () => {
     return {
@@ -21,14 +22,15 @@ export const actions: Actions = {
                 missing: true,
             })
         }
-        let cardInput: any
+        let cardInput: Prisma.CardCreateInput
         try {
             cardInput = typeof card === 'string' ? JSON.parse(card) : card
             await createCard(cardInput)
+            return { success: true, card: cardInput }
         } catch (e) {
             return fail(500, {
                 card,
-                error: 'Failed to create card',
+                error: `Failed to create card: ${e}`,
             })
         }
     },

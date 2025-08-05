@@ -13,7 +13,7 @@ export const GET: RequestHandler = async ({ params }: RequestEvent) => {
             }
         )
     }
-    const getCard = await getCardBySlug(slug)
+    await getCardBySlug(slug)
     return new Response(
         JSON.stringify({
             message: 'Success',

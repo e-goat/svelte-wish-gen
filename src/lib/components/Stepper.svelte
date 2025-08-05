@@ -1,7 +1,7 @@
 <script lang="ts">
     import Button from '$lib/components/Button.svelte'
-    import { defineStepperEvent, stepperSubmit } from '$lib/controller/StepController'
-    import { ss } from '$lib/state.svelte'
+    import { defineStepperEvent } from '$lib/controller/StepController'
+    import { cs, ss } from '$lib/state.svelte'
     import Breadcrumb from './stepper/Breadcrumb.svelte'
 
     let { children, steps = 0, form } = $props()
@@ -36,10 +36,10 @@
                     buttonType="button"
                 />
             {:else}
+                <input type="hidden" name="card" value={JSON.stringify(cs)} />
                 <Button
                     ariaLabel="Submit button"
                     text={'Submit form'}
-                    clickEvent={(e) => stepperSubmit(e)}
                     disabled={ss.currentStep != steps}
                     buttonType="submit"
                 />
