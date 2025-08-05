@@ -1,7 +1,6 @@
 <script lang="ts">
     type CardData = {
         name: string;
-        base64: string;
         description: string;
     };
 
@@ -11,7 +10,6 @@
 {#if data}
     <div class="card">
         <h1>{data.name}</h1>
-        <img src={`data:image/avif;base64,${data.base64}`} alt={data.name} />
         <p>{data.description}</p>
     </div>
 {:else}

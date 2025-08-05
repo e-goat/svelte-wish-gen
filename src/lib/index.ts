@@ -1,5 +1,6 @@
 import slug from 'slug'
 import { error } from '@sveltejs/kit'
+import * as helpers from '$lib/utils/helpers'
 
 interface Template {
     icon: string
@@ -18,13 +19,6 @@ interface CardData {
     template: string
     message: string
     audio: string | null
-}
-
-interface CardPayload {
-    base64: string
-    cardType: string
-    description: string
-    slug: string
 }
 
 type TemplateNames = 'birthday' | 'love' | 'celebration'
@@ -57,18 +51,6 @@ export const templates: Record<TemplateNames, Template> = {
         title: 'Congratulations!',
         background: 'linear-gradient(135deg, #a8edea, #fed6e3)',
     },
-}
-
-function randomStringWithSpaces(length: number): string {
-    const characters =
-        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 '
-    let result = ''
-    for (let i = 0; i < length; i++) {
-        result += characters.charAt(
-            Math.floor(Math.random() * characters.length)
-        )
-    }
-    return result
 }
 
 export function selectTemplate(templateName: TemplateNames): void {
@@ -270,7 +252,7 @@ export async function generateShareCode(): Promise<void> {
         return
     }
 
-    const getSlug = slug(randomStringWithSpaces(6))
+    const getSlug = slug(helpers.randomStringWithSpaces(6))
 
     const cardData: CardData = {
         template: currentCard.template,
@@ -603,16 +585,6 @@ export function resetCard(): void {
         clearInterval(recordingTimer)
         recordingTimer = null
     }
-}
-
-function createCard(data: CardPayload): Promise<Response> {
-    return fetch('/api/card/add', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
 }
 
 async function getCard(slug: string) {

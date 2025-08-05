@@ -115,7 +115,7 @@
                     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {#each features as feature, i}
                         <div
-                            class="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-green-100 hover:shadow-xl hover:scale-105 transition-shadow duration-300 cursor-pointer"
+                            class="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-green-100 hover:shadow-xl hover:scale-105 transition-scale duration-300 cursor-pointer"
                             in:fly={{
                                 y: 50,
                                 duration: 600,
@@ -206,8 +206,8 @@
                                 cards.
                             </p>
                             <a
-                                class="block w-full md:inline-block bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-shadow duration-300 text-center"
-                                href="/create">
+                                class="block w-full md:inline-block bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-scale duration-300 text-center"
+                                href="/card/create">
                                 Start Creating Now
                             </a>
                         </div>

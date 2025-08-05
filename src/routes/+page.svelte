@@ -55,13 +55,12 @@
 </script>
 
 <svelte:head>
-    <title>Kartichka QR</title>
+    <title>{import.meta.env.VITE_APP_NAME ?? 'Kartichka QR'}</title>
 </svelte:head>
 
 <div class="max-w-7xl mx-auto flex flex-col">
     <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 card-shadow bounce-in">
         <div class="grid md:grid-cols-2 gap-12 items-center">
-            <!-- Left Content -->
             <div class="flex flex-col h-full justify-center order-2 md:order-1">
                 <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 leading-tight mb-4 drop-shadow-sm">
                     A greeting card with
@@ -75,14 +74,8 @@
                 <div class="flex-1"></div>
                 <div class="pt-4">
                     <a
-                        href="/create"
-                        class="w-full md:w-auto block md:inline-block px-8 py-3 rounded-xl font-semibold shadow-lg transition-all
-                            bg-gradient-to-r from-orange-500 to-orange-600 text-white
-                            hover:from-orange-600 hover:to-orange-700 hover:scale-105
-                            focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2
-                            text-center text-lg
-                            md:text-base
-                        "
+                        href="/card/create"
+                        class="w-full md:w-auto block md:inline-block px-8 py-3 rounded-xl font-semibold shadow-lg transition-scale duration-300 bg-gradient-to-r from-custom-orange-200 to-custom-orange-400 text-white hover:scale-105 focus:outline-none focus:ring-2 focus:ring-custom-orange-400 focus:ring-offset-2 text-center text-lg md:text-base"
                     >
                         <span class="inline-block align-middle">
                             <svg class="w-5 h-5 mr-2 inline-block -mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -105,7 +98,7 @@
     <section class=" py-12">
         <div class="max-w-7xl mx-auto">
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/80 transition-all">
+                <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/80 transition-colors">
                     <div class="w-16 h-16 bg-green-500 rounded-full mx-auto mb-4 flex items-center justify-center">
                         <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path
@@ -116,7 +109,7 @@
                     <p class="text-gray-600">Create beautiful cards in just seconds with our intuitive design tools.</p>
                 </div>
 
-                <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/80 transition-all">
+                <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/80 transition-colors">
                     <div class="w-16 h-16 bg-orange-500 rounded-full mx-auto mb-4 flex items-center justify-center">
                         <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" />
@@ -128,7 +121,7 @@
                     <p class="text-gray-600">Add a personal voice greeting to make your card truly special.</p>
                 </div>
 
-                <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/80 transition-all">
+                <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/80 transition-colors">
                     <div class="w-16 h-16 bg-blue-500 rounded-full mx-auto mb-4 flex items-center justify-center">
                         <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path
