@@ -1,7 +1,10 @@
 interface CardState {
-    from: string
-    to: string
+    title: string
+    sender: string
+    receiver: string
     description: string
+    templateId: number
+    slug: string
 }
 
 interface StepperState {
@@ -11,18 +14,15 @@ interface StepperState {
     steps: number
 }
 
-/**
- * Card state
- */
 export const cs: CardState = $state({
-    from: '',
-    to: '',
+    title: '',
+    sender: '',
+    receiver: '',
     description: '',
+    templateId: 0,
+    slug: '',
 })
 
-/**
- * Steper state
- */
 export const ss: StepperState = $state({
     initialStep: 0,
     currentStep: 0,
