@@ -11,7 +11,6 @@ interface Template {
 interface CurrentCard {
     template: string | null
     message: string
-    audioBlob: Blob | null
     audioUrl: string | null
 }
 
@@ -26,7 +25,6 @@ type TemplateNames = 'birthday' | 'love' | 'celebration'
 let currentCard: CurrentCard = {
     template: null,
     message: '',
-    audioBlob: null,
     audioUrl: null,
 }
 
@@ -90,7 +88,6 @@ async function startRecording(): Promise<void> {
 
         mediaRecorder.onstop = (): void => {
             const blob = new Blob(chunks, { type: 'audio/wav' })
-            currentCard.audioBlob = blob
             currentCard.audioUrl = URL.createObjectURL(blob)
 
             const audioElement = document.getElementById(
@@ -172,7 +169,6 @@ function updateTimer(): void {
 }
 
 export function deleteRecording(): void {
-    currentCard.audioBlob = null
     if (currentCard.audioUrl) {
         URL.revokeObjectURL(currentCard.audioUrl)
         currentCard.audioUrl = null
@@ -262,53 +258,26 @@ export async function generateShareCode(): Promise<void> {
 
     let shareCode: string = ''
 
-    if (currentCard.audioBlob) {
-        const reader = new FileReader()
-        reader.onload = function (): void {
-            cardData.audio = reader.result as string
-            shareCode = btoa(JSON.stringify(cardData))
+    shareCode = btoa(JSON.stringify(cardData))
 
-            const shareCodeElement = document.getElementById(
-                'shareCode'
-            ) as HTMLElement
-            const shareSection = document.getElementById(
-                'shareSection'
-            ) as HTMLElement
+    const shareCodeElement = document.getElementById('shareCode') as HTMLElement
+    const shareSection = document.getElementById('shareSection') as HTMLElement
 
-            if (shareCodeElement) {
-                shareCodeElement.textContent = getSlug
-            }
-            if (shareSection) {
-                shareSection.classList.remove('hidden')
-            }
-        }
-        reader.readAsDataURL(currentCard.audioBlob)
-    } else {
-        shareCode = btoa(JSON.stringify(cardData))
-
-        const shareCodeElement = document.getElementById(
-            'shareCode'
-        ) as HTMLElement
-        const shareSection = document.getElementById(
-            'shareSection'
-        ) as HTMLElement
-
-        if (shareCodeElement) {
-            shareCodeElement.textContent = getSlug
-        }
-        if (shareSection) {
-            shareSection.classList.remove('hidden')
-        }
+    if (shareCodeElement) {
+        shareCodeElement.textContent = getSlug
+    }
+    if (shareSection) {
+        shareSection.classList.remove('hidden')
     }
 
     try {
-        await createCard({
-            base64: shareCode,
-            cardType: currentCard.template!,
-            description:
-                'Random description for ' + currentCard.template + ' card',
-            slug: getSlug,
-        })
+        // await createCard({
+        //     base64: shareCode,
+        //     cardType: currentCard.template!,
+        //     description:
+        //         'Random description for ' + currentCard.template + ' card',
+        //     slug: getSlug,
+        // })
     } catch (error: unknown) {
         console.error('Error saving card to database:', error)
         alert('Failed to save card. Please try again later.')
@@ -557,7 +526,6 @@ export function resetCard(): void {
     currentCard = {
         template: null,
         message: '',
-        audioBlob: null,
         audioUrl: null,
     }
 

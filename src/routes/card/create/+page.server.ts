@@ -22,7 +22,7 @@ export const load: PageServerLoad = async ({ url }) => {
 }
 
 export const actions: Actions = {
-    createCard: async ({ request }) => {
+    create: async ({ request }) => {
         const formData = await request.formData()
         const card = formData.get('card')
         if (!card) {

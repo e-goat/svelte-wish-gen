@@ -5,7 +5,6 @@ interface CardState {
     description: string
     templateId: number
     slug: string
-    audioBlob: Blob | null
     audioUrl: string | null
 }
 
@@ -31,7 +30,6 @@ export const cs: CardState = $state({
     description: '',
     templateId: 0,
     slug: '',
-    audioBlob: null,
     audioUrl: null,
 })
 

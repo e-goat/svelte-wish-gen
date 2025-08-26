@@ -38,7 +38,6 @@
                 if (cs.audioUrl) {
                     URL.revokeObjectURL(cs.audioUrl)
                 }
-                cs.audioBlob = blob
                 cs.audioUrl = URL.createObjectURL(blob)
                 rs.hasRecording = true
 
@@ -100,7 +99,6 @@
             URL.revokeObjectURL(cs.audioUrl)
             cs.audioUrl = null
         }
-        cs.audioBlob = null
         rs.hasRecording = false
         rs.timer = '00:00'
         rs.progress = 0

@@ -25,6 +25,7 @@ model Card {
   receiver    String?
   slug        String   @unique
   createdAt   DateTime @default(now())
+  audioUrl    String?
 }
 
 model Template {

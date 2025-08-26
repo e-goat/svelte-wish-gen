@@ -10,7 +10,7 @@
 </script>
 
 <article class="shadow rounded-xl bg-white/70 w-full">
-    <form id="step-form" method="POST" action="?/createCard">
+    <form id="step-form" method="POST" action="?/create">
         <div class="p-8 flex flex-col">
             <div class="mb-10">
                 <Breadcrumb {steps} />
