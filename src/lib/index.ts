@@ -128,12 +128,12 @@ async function startRecording(): Promise<void> {
         recordingStartTime = Date.now()
         recordingTimer = setInterval(updateTimer, 1000)
 
-        // Auto-stop after 2 minutes
+        // Auto-stop after 30 seconds
         setTimeout((): void => {
             if (isRecording) {
                 stopRecording()
             }
-        }, 120000)
+        }, 30000)
     } catch (err: unknown) {
         console.error('Error accessing microphone:', err)
         alert('Unable to access microphone. Please check your permissions.')

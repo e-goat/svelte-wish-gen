@@ -11,7 +11,7 @@
 
         <div class="flex items-center">
             <div
-                class="w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center text-xs xs:text-sm sm:text-base md:text-lg font-semibold border-2 transition-colors duration-300 ease-in-out
+                class="w-10 h-10 rounded-full flex items-center justify-center font-semibold border-2 transition-colors duration-300 ease-in-out
                 {isActive
                     ? 'bg-custom-orange-400 text-white border-custom-orange-600 shadow-[0_0_0_3px_rgba(202,167,78,0.2)]'
                     : ''}

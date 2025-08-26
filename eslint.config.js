@@ -12,7 +12,7 @@ export default tseslint.config(
         ignores: [
             'node_modules/*',
             '.svelte-kit/*',
-            '**/*.svelte',
+            // '**/*.svelte',
             'prisma/*',
             'src/lib/assets/*',
             'src/lib/db/*',

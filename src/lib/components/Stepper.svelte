@@ -8,17 +8,16 @@
     let initialStep: number = steps + 1 - steps
     ss.currentStep = initialStep
 </script>
-<article class="p-6 md:p-12 shadow rounded-xl flex flex-col justify-between bg-white/70 w-full">
+
+<article class="shadow rounded-xl bg-white/70 w-full">
     <form id="step-form" method="POST" action="?/createCard">
-        <div class="mb-6 md:mb-8">
-            <Breadcrumb {steps} />
-        </div>
-        <div>
-            <div class="flex items-center justify-between">
-                {@render children()}
+        <div class="p-8 flex flex-col">
+            <div class="mb-10">
+                <Breadcrumb {steps} />
             </div>
+            {@render children()}
         </div>
-        <div class="flex justify-between pt-12 md:pt-16">
+        <div class="flex justify-between px-8 pb-8">
             <Button
                 ariaLabel="Previous Step"
                 text={'Back'}
@@ -43,7 +42,7 @@
                     disabled={ss.currentStep != steps}
                     buttonType="submit"
                 />
-            {/if}
+                {/if}
         </div>
     </form>
 </article>

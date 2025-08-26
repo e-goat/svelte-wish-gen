@@ -6,15 +6,15 @@ cs.slug = helpers.generateSlug(6);
 
 <section>
     <div class="flex flex-col-reverse lg:flex-row">
-        <aside class="flex flex-col gap-4">
-            <h1 class="mb-4 text-4xl leading-none text-gray-900 md:text-5xl lg:text-6xl">
+        <aside class="flex flex-col gap-2 sm:gap-3 md:gap-4 md:w-full">
+            <h1 class="mb-2 sm:mb-3 md:mb-4 text-xl md:text-2xl lg:text-3xl leading-none text-gray-900 text-center">
                 {"A greeting card with your personal touch"}
             </h1>
-            <p class="text-lg lg:text-2xl italic drop-shadow-sm tracking-wide">
+            <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl italic drop-shadow-sm tracking-wide text-center">
                 {"Please fill in the details below to personalize your card"}
             </p>
-                <div class="mt-6 flex flex-col gap-4 w-full max-w-full">
-                    <div class="flex flex-col w-full mb-4">
+                <div class="mt-3 sm:mt-4 md:mt-6 flex flex-col gap-2 sm:gap-3 md:gap-4 w-full max-w-full">
+                    <div class="flex flex-col w-full mb-2 sm:mb-3 md:mb-4">
                         <label class="mb-1 text-sm font-medium text-gray-700" for="to-input">
                             To
                         </label>
@@ -28,7 +28,7 @@ cs.slug = helpers.generateSlug(6);
                             bind:value={cs.receiver}
                         />
                     </div>
-                    <div class="flex flex-col w-full mb-4">
+                    <div class="flex flex-col w-full mb-2 sm:mb-3 md:mb-4">
                         <label class="mb-1 text-sm font-medium text-gray-700" for="from-input">
                             From
                         </label>
@@ -42,7 +42,7 @@ cs.slug = helpers.generateSlug(6);
                             bind:value={cs.sender}
                         />
                     </div>
-                    <div class="flex flex-col w-full mb-4">
+                    <div class="flex flex-col w-full mb-2 sm:mb-3 md:mb-4">
                         <label class="mb-1 text-sm font-medium text-gray-700" for="to-input">
                             Title
                         </label>
@@ -57,7 +57,7 @@ cs.slug = helpers.generateSlug(6);
                             required
                         />
                     </div>
-                    <div class="flex flex-col w-full mb-4">
+                    <div class="flex flex-col w-full mb-2 sm:mb-3 md:mb-4">
                         <label class="mb-1 text-sm font-medium text-gray-700" for="desc-input">
                             Description
                         </label>

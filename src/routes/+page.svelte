@@ -1,38 +1,10 @@
 <script lang="ts">
-    // import {
-    //     importCard,
-    //     selectTemplate,
-    //     toggleRecording,
-    //     deleteRecording,
-    //     createPreview,
-    //     generateShareCode,
-    //     downloadCardAsSVG,
-    //     resetCard,
-    //     copyShareCode,
-    // } from "$lib/index";
     import greetingCard from '$lib/assets/greetingCard.svg';
     import {
         onMount
     } from "svelte";
-    // import type {
-    //     PageProps
-    // } from "./$types";
-    // let {
-    //     data
-    // }: PageProps = $props();
 
     onMount(() => {
-        // if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        //     const step3Element = document.getElementById("step3") as HTMLElement;
-        //     if (step3Element) {
-        //         step3Element.innerHTML = `
-        //     <h2>3. Voice Recording Not Supported</h2>
-        //     <div class="error">
-        //     Your browser doesn't support voice recording. You can still create text-only cards!
-        //     </div>
-        //     `;
-        //     }
-        // }
         const buttons = document.querySelectorAll('button');
         buttons.forEach(button => {
             button.addEventListener('mouseenter', function() {
@@ -59,7 +31,7 @@
 </svelte:head>
 
 <div class="max-w-7xl mx-auto flex flex-col">
-    <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 card-shadow bounce-in">
+    <div class="p-8 md:p-12 bounce-in">
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <div class="flex flex-col h-full justify-center order-2 md:order-1">
                 <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 leading-tight mb-4 drop-shadow-sm">
@@ -75,7 +47,7 @@
                 <div class="pt-4">
                     <a
                         href="/card/create"
-                        class="w-full md:w-auto block md:inline-block px-8 py-3 rounded-xl font-semibold shadow-lg transition-scale duration-300 bg-gradient-to-r from-custom-orange-200 to-custom-orange-400 text-white hover:scale-105 focus:outline-none focus:ring-2 focus:ring-custom-orange-400 focus:ring-offset-2 text-center text-lg md:text-base"
+                        class="w-full md:w-auto block md:inline-block px-8 py-3 rounded-xl font-semibold shadow-lg transition-scale duration-300 bg-gradient-to-r from-custom-orange-400 to-custom-orange-600 text-white font-bold hover:scale-105 focus:outline-none focus:ring-2 focus:ring-custom-orange-400 focus:ring-offset-2 text-center text-lg md:text-base"
                     >
                         <span class="inline-block align-middle">
                             <svg class="w-5 h-5 mr-2 inline-block -mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -138,10 +110,6 @@
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-    .card-shadow {
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    }
 
     .floating-animation {
         animation: float 6s ease-in-out infinite;

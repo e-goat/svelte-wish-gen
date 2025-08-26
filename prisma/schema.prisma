@@ -20,6 +20,7 @@ model Card {
   templateId  Int
   title       String
   description String
+  qrCode      String?
   sender      String?
   receiver    String?
   slug        String   @unique
@@ -27,11 +28,12 @@ model Card {
 }
 
 model Template {
-  id         Int @id @default(autoincrement())
-  cards      Card[]
-  title      String
-  type       String
-  background String
-  font       String @default("Arial")
-  createdAt  DateTime @default(now())
+  id          Int @id @default(autoincrement())
+  cards       Card[]
+  title       String
+  description String @default("")
+  type        String
+  background  String
+  font        String @default("Arial")
+  createdAt   DateTime @default(now())
 }

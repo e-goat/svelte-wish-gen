@@ -1,6 +1,7 @@
 /* Browsers require that @import statements come before any other rules, so URL imports need to be above imports like @import "tailwindcss" which are inlined in the compiled CSS. */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chiron+Sung+HK:ital,wght@0,200..900;1,200..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'tailwindcss';
+
 @theme {
     --color-amber-111: #ffede4;
     --color-custom-teal-200: #93e0a2;

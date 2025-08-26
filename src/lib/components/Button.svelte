@@ -16,7 +16,7 @@
 
 <button
     aria-label={ariaLabel}
-    class="p-2 bg-custom-orange-400 rounded-lg cursor-pointer text-shadow font-sans font-bold h-10 w-32 text-center text-white hover:bg-custom-orange-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 {float}"
+    class="bg-custom-orange-400 rounded-lg cursor-pointer text-shadow font-sans font-bold h-10 w-20 md:w-24 lg:32 text-center text-white hover:bg-custom-orange-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 {float}"
     onclick={clickEvent}
     class:disable={disabled}
     type={buttonType}>

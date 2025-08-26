@@ -11,6 +11,10 @@
     let { data, form }: PageProps & { form: ActionData } = $props()
 </script>
 
+<svelte:head>
+    <title>{'Create Kartichka'}</title>
+</svelte:head>
+
 <Stepper steps={4} {form}>
     {#if ss.currentStep == 1}
         <Intro />

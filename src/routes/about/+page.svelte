@@ -1,8 +1,6 @@
 <script lang="ts">
     import { onMount } from 'svelte'
     import { fade, fly, scale } from 'svelte/transition'
-    import ceoAvatar from '$lib/assets/ceoAvatar.jpg'
-    import creativeLead from '$lib/assets/creativeLead.jpeg'
 
     let mounted = false
     let activeCard: number | null = null
@@ -11,46 +9,7 @@
         mounted = true
     })
 
-    const teamMembers = [
-        {
-            name: 'Penyo Stoyanov',
-            role: 'Founder & CEO',
-            bio: 'Passionate about creating meaningful connections through personalized greeting cards.',
-            avatar: ceoAvatar,
-        },
-        {
-            name: 'Emma Rodriguez',
-            role: 'Creative Lead',
-            bio: 'Brings ideas to life with innovative designs and a keen eye for detail.',
-            avatar: creativeLead,
-        },
-    ]
 
-    const features = [
-        {
-            icon: '⚡',
-            title: 'Lightning Fast',
-            description:
-                'Create your custom card in seconds with our intuitive interface',
-        },
-        {
-            icon: '🎭',
-            title: 'Personal Touch',
-            description:
-                'Add your unique message and voice greeting for that special someone',
-        },
-        {
-            icon: '🎪',
-            title: 'Creative Freedom',
-            description:
-                'Choose from hundreds of designs or create your own masterpiece',
-        },
-        {
-            icon: '💝',
-            title: 'Heartfelt Moments',
-            description: 'Turn ordinary moments into extraordinary memories',
-        },
-    ]
 </script>
 
 <!-- Animated background particles -->
@@ -72,110 +31,144 @@
 <div class="bg-transparent relative z-10">
     <!-- Hero Section -->
     {#if mounted}
-        <section class="px-6 py-16 text-center" in:fade={{ duration: 1000 }}>
-            <div class="max-w-4xl mx-auto">
-                <h1
-                    class="text-5xl md:text-7xl font-bold text-slate-800 mb-6 bg-gradient-to-r from-green-600 to-emerald-700 bg-clip-text"
-                    in:fly={{ y: 50, duration: 800, delay: 200 }}>
-                    About Our Story
-                </h1>
-                <p
-                    class="text-xl md:text-2xl text-slate-600 mb-8 leading-relaxed"
-                    in:fly={{ y: 30, duration: 800, delay: 400 }}>
-                    We believe every greeting card should tell a story, carry
-                    emotions, and create lasting memories. Our mission is to
-                    bring the personal touch back to digital communication.
-                </p>
-                <div class="flex items-center justify-center space-x-4 my-8">
-                    <span
-                        class="flex-1 h-px bg-gradient-to-r from-green-300 via-emerald-700 to-green-300"
-                    ></span>
-                    <span
-                        class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-emerald-500 to-green-700 tracking-wide drop-shadow-lg whitespace-nowrap flex items-center"
-                        style="min-height:2.5rem;">
-                        Made with <span
-                            class="inline-block mx-1"
-                            style="font-size:1.5em; line-height:1;">💚</span> since
-                        2025
-                    </span>
-                    <span
-                        class="flex-1 h-px bg-gradient-to-r from-green-300 via-emerald-700 to-green-300"
-                    ></span>
-                </div>
-            </div>
-        </section>
-        <section class="px-6">
+        <!-- About Us Content in Bulgarian -->
+        <section class="px-6 py-16">
             <div class="max-w-6xl mx-auto">
-                <h2
-                    class="text-4xl font-bold text-center text-slate-800 mb-12"
-                    in:fly={{ y: 30, duration: 600, delay: 200 }}>
-                    Why Choose Us?
-                </h2>
-                <div
-                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {#each features as feature, i}
-                        <div
-                            class="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-green-100 hover:shadow-xl hover:scale-105 transition-scale duration-300 cursor-pointer"
-                            in:fly={{
-                                y: 50,
-                                duration: 600,
-                                delay: 400 + i * 100,
-                            }}
-                            on:mouseenter={() => (activeCard = i)}
-                            on:mouseleave={() => (activeCard = null)}
-                            role="button"
-                            tabindex="0">
-                            <div
-                                class="text-4xl mb-4 transform transition-transform duration-300"
-                                class:scale-110={activeCard === i}>
-                                {feature.icon}
-                            </div>
-                            <h3
-                                class="text-xl font-semibold text-slate-800 mb-2">
-                                {feature.title}
-                            </h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                {feature.description}
-                            </p>
+                                 <h1
+                 class="text-6xl md:text-8xl font-bold text-slate-800 mb-8 bg-gradient-to-r from-green-600 to-emerald-700 bg-clip-text text-center"
+                 in:fly={{ y: 50, duration: 800, delay: 200 }}>
+                     За нашата компания
+                 </h1>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    <!-- За нас -->
+                    <div
+                        class="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-green-100 hover:shadow-xl transition-shadow duration-300"
+                        in:fly={{ y: 50, duration: 600, delay: 400 }}>
+                        <div class="text-5xl mb-6 text-center">🏠</div>
+                        <h3 class="text-3xl font-bold text-slate-800 mb-6 text-center">За нас</h3>
+                        <div class="text-slate-700 leading-relaxed space-y-4 text-base">
+                            <p>Ние сме малък български екип с една проста, но добре обмислена идея: да внесем топлина и човешко отношение в поздравите.</p>
+                            <p>В мига, в който някой чуе любим за него глас в картичка, емоцията оживява – и това е нашият принос към това дигиталният свят да изпълнява истинското си предназначение: да събира хората заедно.</p>
+                            <p>Започнахме през 2025 година с вярата, че технологията трябва да служи на човешките емоции, а не да ги заменя. Всяка картичка, която създаваме, носи частичка от сърцето на подателя.</p>
                         </div>
-                    {/each}
+                    </div>
+
+                    <!-- Нашата мисия -->
+                    <div
+                        class="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-green-100 hover:shadow-xl transition-shadow duration-300"
+                        in:fly={{ y: 50, duration: 600, delay: 500 }}>
+                        <div class="text-5xl mb-6 text-center">🎯</div>
+                        <h3 class="text-3xl font-bold text-slate-800 mb-6 text-center">Нашата мисия</h3>
+                        <div class="text-slate-700 leading-relaxed space-y-4 text-base">
+                            <p>KartichkaQR прави персоналните поздравителни картички прости и значими.</p>
+                            <p>Записвате гласовото си съобщение, избирате красив дизайн, а ние отпечатваме и доставяме висококачествена картичка с QR код.</p>
+                            <p>Когато се сканира, получателите чуват вашето лично съобщение — създавайки трайни емоционални връзки.</p>
+                            <p>Без акаунти, без сложности — просто сърдечна комуникация направена лесна.</p>
+                        </div>
+                    </div>
+
+                    <!-- Нашата философия -->
+                    <div
+                        class="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-green-100 hover:shadow-xl transition-shadow duration-300"
+                        in:fly={{ y: 50, duration: 600, delay: 600 }}>
+                        <div class="text-5xl mb-6 text-center">💭</div>
+                        <h3 class="text-3xl font-bold text-slate-800 mb-6 text-center">Нашата философия</h3>
+                        <div class="text-slate-700 leading-relaxed space-y-4 text-base">
+                            <p class="italic text-center font-medium text-green-700 text-lg">"Най-важните думи не се четат — те се чуват."</p>
+                            <p>Гласът е мостът, който свързва сърцата независимо от разстоянието.</p>
+                            <p>Един прост жест — картичка с глас — се превръща в спомен, който може да се слуша отново и отново, дори след години.</p>
+                            <p>Вярваме, че в света на бързите съобщения и емотикони, истинската емоция се предава най-добре чрез човешкия глас.</p>
+                            <p>Затова създаваме продукт, който съчетава традиционната красота на хартиените картички с магията на съвременните технологии.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <!-- Как работи секция -->
         <section class="px-6 py-16">
             <div class="max-w-6xl mx-auto">
                 <h2
-                    class="text-4xl font-bold text-center text-slate-800 mb-12"
+                    class="text-5xl font-bold text-center text-slate-800 mb-16"
                     in:fly={{ y: 30, duration: 600, delay: 200 }}>
-                    Meet Our Team
+                    Как работи KartichkaQR
                 </h2>
-                <div class="grid gap-8 grid-cols-1 md:grid-cols-2">
-                    {#each teamMembers as member, i}
-                        <div
-                            class="bg-gradient-to-b from-white/70 to-white-30 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-green-200 hover:shadow-xl transition-shadow duration-300 text-center group"
-                            in:fly={{
-                                y: 50,
-                                duration: 600,
-                                delay: 400 + i * 150,
-                            }}>
-                            <div
-                                class="text-6xl mb-4 transition-transform duration-300 w-full flex justify-center">
-                                <img
-                                    src={member.avatar}
-                                    alt="Avatar"
-                                    class="rounded-full border border-green-600 p-2 shadow-lg w-60 h-60 object-contain" />
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div
+                        class="text-center bg-gradient-to-b from-green-50 to-emerald-50 rounded-2xl p-8 shadow-lg border border-green-100"
+                        in:fly={{ y: 50, duration: 600, delay: 400 }}>
+                        <div class="text-6xl mb-6">🎤</div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">Записвай глас</h3>
+                        <p class="text-slate-600 text-base">Сподели своето съобщение с 30-секундно гласово записване</p>
+                    </div>
+                    <div
+                        class="text-center bg-gradient-to-b from-green-50 to-emerald-50 rounded-2xl p-8 shadow-lg border border-green-100"
+                        in:fly={{ y: 50, duration: 600, delay: 500 }}>
+                        <div class="text-6xl mb-6">🎨</div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">Избирай дизайн</h3>
+                        <p class="text-slate-600 text-base">Персонализирай картичката си с красиви шаблони за всеки повод</p>
+                    </div>
+                    <div
+                        class="text-center bg-gradient-to-b from-green-50 to-emerald-50 rounded-2xl p-8 shadow-lg border border-green-100"
+                        in:fly={{ y: 50, duration: 600, delay: 600 }}>
+                        <div class="text-6xl mb-6">🚚</div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">Получавай доставка</h3>
+                        <p class="text-slate-600 text-base">Картичката ти се отпечатва на висококачествен материал и се доставя бързо</p>
+                    </div>
+                    <div
+                        class="text-center bg-gradient-to-b from-green-50 to-emerald-50 rounded-2xl p-8 shadow-lg border border-green-100"
+                        in:fly={{ y: 50, duration: 600, delay: 700 }}>
+                        <div class="text-6xl mb-6">📱</div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4">Сканирай QR код</h3>
+                        <p class="text-slate-600 text-base">Получателите сканират кода и чуват твоята емоция веднага</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Нашите ценности секция -->
+        <section class="px-6 py-16">
+            <div class="max-w-4xl mx-auto">
+                <h2
+                    class="text-5xl font-bold text-center text-slate-800 mb-16"
+                    in:fly={{ y: 30, duration: 600, delay: 200 }}>
+                    Нашите ценности
+                </h2>
+                <div class="space-y-8">
+                    <div
+                        class="bg-white/70 backdrop-blur-sm rounded-2xl p-10 shadow-lg border border-green-100"
+                        in:fly={{ y: 30, duration: 600, delay: 400 }}>
+                        <div class="flex items-start space-x-6">
+                            <div class="text-4xl">❤️</div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-800 mb-3">Човечност</h3>
+                                <p class="text-slate-700 text-lg">Технологията трябва да засилва човешките връзки, а не да ги заменя. Всеки продукт, който създаваме, носи човешка топлина.</p>
                             </div>
-                            <h3 class="text-xl font-bold text-slate-800 mb-2">
-                                {member.name}
-                            </h3>
-                            <p class="text-green-600 font-medium mb-4">
-                                {member.role}
-                            </p>
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                {member.bio}
-                            </p>
                         </div>
-                    {/each}
+                    </div>
+                    <div
+                        class="bg-white/70 backdrop-blur-sm rounded-2xl p-10 shadow-lg border border-green-100"
+                        in:fly={{ y: 30, duration: 600, delay: 500 }}>
+                        <div class="flex items-start space-x-6">
+                            <div class="text-4xl">🔒</div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-800 mb-3">Сигурност</h3>
+                                <p class="text-slate-700 text-lg">Вашите лични съобщения са защитени с най-високите стандарти за сигурност. Вашата поверителност е наш приоритет.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white/70 backdrop-blur-sm rounded-2xl p-10 shadow-lg border border-green-100"
+                        in:fly={{ y: 30, duration: 600, delay: 600 }}>
+                        <div class="flex items-start space-x-6">
+                            <div class="text-4xl">🌱</div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-800 mb-3">Устойчивост</h3>
+                                <p class="text-slate-700 text-lg">Използваме екологично чисти материали и отговорни практики в производството, за да опазим планетата за бъдещите поколения.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -184,31 +177,29 @@
                 <div
                     class="shadow-lg bg-gradient-to-r from-green-400/40 to-emerald-400/20 rounded-3xl p-12 backdrop-blur-sm border border-green-200"
                     in:scale={{ duration: 800, delay: 300 }}>
-                    <h2 class="text-3xl font-bold text-white mb-6">
-                        Our Mission
+                    <h2 class="text-4xl font-bold text-white mb-8">
+                        Нашата визия
                     </h2>
-                    <p class="text-lg text-white leading-relaxed mb-8">
-                        "To revolutionize how people connect by making every
-                        greeting card a unique, personal experience that bridges
-                        distances and touches hearts. We're not just creating
-                        cards – we're crafting moments that matter."
+                    <p class="text-xl text-white leading-relaxed mb-10">
+                        "Да революционизираме начина, по който хората се свързват, като направим всяка 
+                        поздравителна картичка уникално, лично преживяване, което преодолява разстояния и 
+                        докосва сърца. Ние не просто създаваме картички – ние изграждаме моменти, които имат значение."
                     </p>
                     <div class="max-w-3xl mx-auto">
                         <div
-                            class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg border border-green-200"
+                            class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-10 shadow-lg border border-green-200"
                             in:fly={{ y: 30, duration: 600, delay: 200 }}>
-                            <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-3 md:mb-4">
-                                Ready to Create Magic?
+                            <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4 md:mb-6">
+                                Готови да създадете магия?
                             </h2>
-                            <p class="text-slate-600 mb-6 md:mb-8 text-base md:text-lg">
-                                Join thousands of users who have already
-                                discovered the joy of personalized greeting
-                                cards.
+                            <p class="text-slate-600 mb-8 md:mb-10 text-lg md:text-xl">
+                                Присъединете се към хилядите потребители, които вече са 
+                                открили радостта от персонализираните поздравителни картички.
                             </p>
                             <a
-                                class="block w-full md:inline-block bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-scale duration-300 text-center"
+                                class="block w-full md:inline-block bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-scale duration-300 text-center text-lg"
                                 href="/card/create">
-                                Start Creating Now
+                                Започни да създаваш сега
                             </a>
                         </div>
                     </div>

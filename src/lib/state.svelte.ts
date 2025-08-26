@@ -5,6 +5,8 @@ interface CardState {
     description: string
     templateId: number
     slug: string
+    audioBlob: Blob | null
+    audioUrl: string | null
 }
 
 interface StepperState {
@@ -14,6 +16,14 @@ interface StepperState {
     steps: number
 }
 
+interface RecordingState {
+    isRecording: boolean
+    hasRecording: boolean
+    timer: string
+    progress: number
+    recordingStartTime: number
+}
+
 export const cs: CardState = $state({
     title: '',
     sender: '',
@@ -21,6 +31,8 @@ export const cs: CardState = $state({
     description: '',
     templateId: 0,
     slug: '',
+    audioBlob: null,
+    audioUrl: null,
 })
 
 export const ss: StepperState = $state({
@@ -28,4 +40,12 @@ export const ss: StepperState = $state({
     currentStep: 0,
     finalStep: 0,
     steps: 0,
+})
+
+export const rs: RecordingState = $state({
+    isRecording: false,
+    hasRecording: false,
+    timer: '00:00',
+    progress: 0,
+    recordingStartTime: 0,
 })
