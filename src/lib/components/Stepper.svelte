@@ -19,16 +19,16 @@
         </div>
         <div class="flex justify-between px-8 pb-8">
             <Button
-                ariaLabel="Previous Step"
-                text={'Back'}
+                ariaLabel="Предишна стъпка"
+                text={'Назад'}
                 clickEvent={(e) => defineStepperEvent('prev', steps, initialStep)}
                 disabled={ss.currentStep == initialStep}
                 buttonType="button"
             />
             {#if ss.currentStep != steps}
                 <Button
-                    ariaLabel="Next Step"
-                    text={'Next'}
+                    ariaLabel="Следваща стъпка"
+                    text={'Напред'}
                     clickEvent={(e) =>
                         defineStepperEvent('next', steps, initialStep)}
                     disabled={ss.currentStep == steps}
@@ -37,8 +37,8 @@
             {:else}
                 <input type="hidden" name="card" value={JSON.stringify(cs)} />
                 <Button
-                    ariaLabel="Submit button"
-                    text={'Submit form'}
+                    ariaLabel="Бутон за изпращане"
+                    text={'Изпрати форма'}
                     disabled={ss.currentStep != steps}
                     buttonType="submit"
                 />

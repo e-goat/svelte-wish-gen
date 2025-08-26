@@ -66,7 +66,7 @@
             }, 100)
         } catch (err) {
             console.error('Error accessing microphone:', err)
-            alert('Unable to access microphone. Please check your permissions.')
+            alert('Не може да се получи достъп до микрофона. Моля, проверете разрешенията си.')
         }
     }
 
@@ -130,12 +130,12 @@
         <aside class="flex flex-col gap-4 sm:gap-6 md:gap-8">
             <h1
                 class="mb-2 sm:mb-3 md:mb-4 text-xl md:text-2xl lg:text-3xl leading-none text-gray-900 text-center">
-                Record your voice greeting
+                Запишете своята гласова поздрав
             </h1>
             <p
                 class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl italic drop-shadow-sm tracking-wide text-center text-gray-700">
-                Add a personal touch with your voice. Record a greeting that
-                will be included in the card.
+                Добавете личен почерк с вашия глас. Запишете поздрав, който
+                ще бъде включен в картичката.
             </p>
 
             <!-- Recording Interface -->
@@ -189,11 +189,11 @@
                     <p
                         class="text-center text-sm sm:text-base text-gray-600 font-medium">
                         {#if rs.isRecording}
-                            Recording... Click to stop
+                            Записване... Кликнете за спиране
                         {:else if rs.hasRecording}
-                            Click to record again
+                            Кликнете за нов запис
                         {:else}
-                            Click to start recording
+                            Кликнете за стартиране на записа
                         {/if}
                     </p>
                 </div>
@@ -209,13 +209,13 @@
                                     <span class="text-white text-sm">🎵</span>
                                 </div>
                                 <span class="text-sm font-medium text-gray-700"
-                                    >Your Recording</span>
+                                    >Вашият запис</span>
                             </div>
                             <button
                                 type="button"
                                 on:click={handleDeleteRecording}
                                 class="px-3 py-1 text-xs bg-red-100 text-red-600 rounded-full hover:bg-red-200 transition-colors duration-200 border border-red-200">
-                                Delete
+                                Изтрий
                             </button>
                         </div>
 
@@ -224,7 +224,7 @@
                             controls
                             class="w-full mt-3"
                             preload="metadata">
-                            Your browser does not support audio playback.
+                            Вашият браузър не поддържа аудио възпроизвеждане.
                         </audio>
                     </div>
                 {/if}
@@ -232,9 +232,9 @@
                 <!-- Instructions -->
                 <div
                     class="text-center text-xs sm:text-sm text-gray-500 max-w-md">
-                    <p>Maximum recording time: 30 seconds</p>
+                    <p>Максимално време за запис: 30 секунди</p>
                     <p class="mt-1">
-                        Make sure your microphone is enabled and speak clearly
+                        Уверете се, че микрофонът ви е включен и говорете ясно
                     </p>
                 </div>
             </div>

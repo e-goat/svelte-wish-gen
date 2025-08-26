@@ -34,11 +34,11 @@
         <!-- About Us Content in Bulgarian -->
         <section class="px-6 py-16">
             <div class="max-w-6xl mx-auto">
-                                 <h1
-                 class="text-6xl md:text-8xl font-bold text-slate-800 mb-8 bg-gradient-to-r from-green-600 to-emerald-700 bg-clip-text text-center"
-                 in:fly={{ y: 50, duration: 800, delay: 200 }}>
-                     За нашата компания
-                 </h1>
+                <div class="pb-20" in:fly={{ y: 50, duration: 800, delay: 200 }}>
+                    <h1 class="text-5xl text-gray-900 text-center">
+                         За нашата компания
+                    </h1>
+                </div>
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     
                     <!-- За нас -->
@@ -172,35 +172,47 @@
                 </div>
             </div>
         </section>
-        <section class="px-6 py-16">
-            <div class="max-w-4xl mx-auto text-center">
+        <section class="px-4 py-12 sm:px-6 sm:py-16">
+            <div class="max-w-4xl mx-auto">
                 <div
-                    class="shadow-lg bg-gradient-to-r from-green-400/40 to-emerald-400/20 rounded-3xl p-12 backdrop-blur-sm border border-green-200"
+                    class="bg-gradient-to-br from-green-400/50 to-emerald-500/30 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 backdrop-blur-sm border border-green-200/50 shadow-xl"
                     in:scale={{ duration: 800, delay: 300 }}>
-                    <h2 class="text-4xl font-bold text-white mb-8">
-                        Нашата визия
-                    </h2>
-                    <p class="text-xl text-white leading-relaxed mb-10">
-                        "Да революционизираме начина, по който хората се свързват, като направим всяка 
-                        поздравителна картичка уникално, лично преживяване, което преодолява разстояния и 
-                        докосва сърца. Ние не просто създаваме картички – ние изграждаме моменти, които имат значение."
-                    </p>
-                    <div class="max-w-3xl mx-auto">
-                        <div
-                            class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-10 shadow-lg border border-green-200"
-                            in:fly={{ y: 30, duration: 600, delay: 200 }}>
-                            <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4 md:mb-6">
+                    <!-- Vision Header -->
+                    <div class="text-center mb-8 sm:mb-10">
+                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6">
+                            Нашата визия
+                        </h2>
+                        <p class="text-base sm:text-lg lg:text-xl text-white/95 leading-relaxed max-w-3xl mx-auto">
+                            "Да революционизираме начина, по който хората се свързват, като направим всяка 
+                            поздравителна картичка уникално, лично преживяване, което преодолява разстояния и 
+                            докосва сърца. Ние не просто създаваме картички – ние изграждаме моменти, които имат значение."
+                        </p>
+                    </div>
+
+                    <!-- CTA Section -->
+                    <div
+                        class="bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-lg border border-white/30"
+                        in:fly={{ y: 30, duration: 600, delay: 200 }}>
+                        <div class="text-center">
+                            <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-800 mb-3 sm:mb-4 lg:mb-6">
                                 Готови да създадете магия?
-                            </h2>
-                            <p class="text-slate-600 mb-8 md:mb-10 text-lg md:text-xl">
+                            </h3>
+                            <p class="text-slate-600 mb-6 sm:mb-8 lg:mb-10 text-sm sm:text-base lg:text-lg leading-relaxed">
                                 Присъединете се към хилядите потребители, които вече са 
                                 открили радостта от персонализираните поздравителни картички.
                             </p>
-                            <a
-                                class="block w-full md:inline-block bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-scale duration-300 text-center text-lg"
-                                href="/card/create">
-                                Започни да създаваш сега
-                            </a>
+                            
+                            <!-- Mobile-first CTA Button -->
+                            <div class="space-y-3 sm:space-y-0">
+                                <a
+                                    class="inline-flex items-center justify-center w-full sm:w-auto bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 text-sm sm:text-base lg:text-lg"
+                                    href="/card/create">
+                                    <span>Започни да създаваш сега</span>
+                                    <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

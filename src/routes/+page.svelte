@@ -1,5 +1,5 @@
 <script lang="ts">
-    import greetingCard from '$lib/assets/greetingCard.svg';
+    import LandingImage from '$lib/components/LandingImage.svelte'
     import {
         onMount
     } from "svelte";
@@ -35,25 +35,25 @@
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <div class="flex flex-col h-full justify-center order-2 md:order-1">
                 <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 leading-tight mb-4 drop-shadow-sm">
-                    A greeting card with
-                    <span class="text-green-600">your personal touch</span>
+                    Поздравителна картичка с
+                    <span class="text-green-600">вашия личен почерк</span>
                 </h1>
 
                 <p class="text-lg text-gray-600 italic leading-relaxed mb-6">
-                    Create a custom card in seconds, choose a design,
-                    add your message and record a voice greeting.
+                    Създайте персонализирана картичка за секунди, изберете дизайн,
+                    добавете съобщението си и запишете гласова поздрав.
                 </p>
                 <div class="flex-1"></div>
                 <div class="pt-4">
                     <a
                         href="/card/create"
-                        class="w-full md:w-auto block md:inline-block px-8 py-3 rounded-xl font-semibold shadow-lg transition-scale duration-300 bg-gradient-to-r from-custom-orange-400 to-custom-orange-600 text-white font-bold hover:scale-105 focus:outline-none focus:ring-2 focus:ring-custom-orange-400 focus:ring-offset-2 text-center text-lg md:text-base"
+                        class="w-full md:w-auto block md:inline-block px-8 py-3 rounded-xl shadow-lg transition-scale duration-300 bg-gradient-to-r from-custom-orange-400 to-custom-orange-600 text-white hover:scale-105 focus:outline-none focus:ring-2 focus:ring-custom-orange-400 focus:ring-offset-2 text-center text-lg md:text-base"
                     >
                         <span class="inline-block align-middle">
                             <svg class="w-5 h-5 mr-2 inline-block -mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
                             </svg>
-                            Create your card
+                            Създайте картичката си
                         </span>
                     </a>
                 </div>
@@ -61,8 +61,8 @@
             <div class="relative flex justify-center items-center order-1 md:order-2">
                 <div class="floating-animation">
                     <div class="relative mx-auto w-64 h-64 md:w-80 md:h-80 p-4">
-                        <img src={greetingCard} alt="Step 1" class="absolute inset-0 w-full h-full object-contain" />
-                </div>
+                        <LandingImage/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -77,8 +77,8 @@
                                 d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Quick & Easy</h3>
-                    <p class="text-gray-600">Create beautiful cards in just seconds with our intuitive design tools.</p>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Бързо и лесно</h3>
+                    <p class="text-gray-600">Създавайте красиви картички за секунди с нашите интуитивни инструменти за дизайн.</p>
                 </div>
 
                 <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/80 transition-colors">
@@ -89,8 +89,8 @@
                                 d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Voice Messages</h3>
-                    <p class="text-gray-600">Add a personal voice greeting to make your card truly special.</p>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Гласови съобщения</h3>
+                    <p class="text-gray-600">Добавете лична гласова поздрав, за да направите картичката си наистина специална.</p>
                 </div>
 
                 <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/80 transition-colors">
@@ -100,8 +100,8 @@
                                 d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Custom Designs</h3>
-                    <p class="text-gray-600">Choose from beautiful templates or create your own unique design.</p>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Персонализирани дизайни</h3>
+                    <p class="text-gray-600">Избирайте от красиви шаблони или създайте свой уникален дизайн.</p>
                 </div>
             </div>
         </div>

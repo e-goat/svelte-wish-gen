@@ -12,7 +12,7 @@
 </script>
 
 <svelte:head>
-    <title>{'Create Kartichka'}</title>
+    <title>{'Създаи Картичка'}</title>
 </svelte:head>
 
 <Stepper steps={4} {form}>

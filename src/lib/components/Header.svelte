@@ -9,9 +9,9 @@
     <a
         href="/"
         class="flex items-center gap-2 text-amber-600 font-bold text-lg hover:text-amber-800 transition-colors"
-        aria-label="Home">
+        aria-label="Начало">
         <img
-            alt="KartichkaQR Logo"
+            alt="KartichkaQR Лого"
             src={logo}
             class="w-10 h-10 rounded-full object-cover shadow" />
     </a>
@@ -19,12 +19,12 @@
         class="flex items-center">
         <li>
             <NavItem target="/">
-                Home
+                Начало
             </NavItem>
         </li>
         <li>
             <NavItem target="/about">
-                About
+                За нас
             </NavItem>
         </li>
     </ul>

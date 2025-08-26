@@ -44,13 +44,13 @@
 </script>
 
 {#if totalPages > 1}
-    <nav class="flex items-center justify-center space-x-1 mt-8" aria-label="Pagination">
+    <nav class="flex items-center justify-center space-x-1 mt-8" aria-label="Странициране">
         <!-- Previous button -->
         {#if currentPage > 1}
             <a 
                 href="{url}?limit={pageSize}&skip={pageSize * (currentPage - 2)}" 
                 class="flex items-center justify-center w-10 h-10 text-sm font-medium text-custom-orange-600 bg-white border border-custom-orange-200 rounded-lg hover:bg-custom-orange-200 hover:text-custom-orange-600 transition-colors duration-200"
-                aria-label="Previous page"
+                aria-label="Предишна страница"
             >
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -89,7 +89,7 @@
             <a 
                 href="{url}?limit={pageSize}&skip={pageSize * currentPage}" 
                 class="flex items-center justify-center w-10 h-10 text-sm font-medium text-custom-orange-600 bg-white border border-custom-orange-200 rounded-lg hover:bg-custom-orange-200 hover:text-custom-orange-600 transition-colors duration-200"
-                aria-label="Next page"
+                aria-label="Следваща страница"
             >
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />

@@ -35,10 +35,10 @@
 <section>
     <aside>
         <h1 class="mb-2 sm:mb-3 md:mb-4 text-xl md:text-2xl lg:text-3xl leading-none text-gray-900 text-center">
-            {"Choose design"}
+            {"Изберете дизайн"}
         </h1>
         <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl italic drop-shadow-sm tracking-wide text-center">
-            {"Please select one of the displayed templates"}
+            {"Моля, изберете един от показаните шаблони"}
         </p>
         <ul class="mt-6 grid gap-2 grid-cols-2 h-[460px] overflow-auto">
             {#each data.templates as t}
