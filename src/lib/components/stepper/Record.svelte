@@ -150,7 +150,7 @@
                     <div
                         class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
                         <div
-                            class="h-full bg-gradient-to-r from-custom-teal-200 to-custom-teal-300 rounded-full transition-all duration-300 ease-out"
+                            class="h-full bg-gradient-to-r from-custom-teal-200 to-custom-teal-300 rounded-full transition-width duration-300 ease-out"
                             style="width: {rs.progress}%">
                         </div>
                     </div>
@@ -161,7 +161,7 @@
                     <button
                         type="button"
                         on:click={handleRecordToggle}
-                        class="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full border-4 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-custom-orange-200
+                        class="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full border-4 transition-transform duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-custom-orange-200
                                {rs.isRecording
                             ? 'bg-red-500 border-red-600 animate-pulse shadow-lg shadow-red-200'
                             : rs.hasRecording

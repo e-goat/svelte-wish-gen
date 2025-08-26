@@ -31,17 +31,63 @@ export const actions: Actions = {
                 missing: true,
             })
         }
-        let cardInput: Prisma.CardCreateInput
+        let cardData: any
         try {
-            cardInput = typeof card === 'string' ? JSON.parse(card) : card
+            cardData = typeof card === 'string' ? JSON.parse(card) : card
+
+            // Validate that templateId is not 0 (user must select a template)
+            if (!cardData.templateId || cardData.templateId === 0) {
+                return fail(400, {
+                    card,
+                    error: 'Моля, изберете шаблон за картичката.',
+                })
+            }
+
+            // Validate required fields
+            if (
+                !cardData.title?.trim() ||
+                !cardData.receiver?.trim() ||
+                !cardData.sender?.trim()
+            ) {
+                return fail(400, {
+                    card,
+                    missing: true,
+                })
+            }
+
+            // Create the proper Prisma input with template relation
+            const cardInput: Prisma.CardCreateInput = {
+                title: cardData.title,
+                description: cardData.description,
+                sender: cardData.sender,
+                receiver: cardData.receiver,
+                slug: cardData.slug,
+                audioUrl: cardData.audioUrl,
+                template: {
+                    connect: { id: cardData.templateId },
+                },
+            }
 
             await createCard(cardInput)
 
             return { success: true, card: cardInput }
         } catch (e) {
+            console.error('Card creation error:', e)
+
+            // Check if it's a foreign key constraint error
+            if (
+                e instanceof Error &&
+                e.message.includes('Card_templateId_fkey')
+            ) {
+                return fail(400, {
+                    card,
+                    error: 'Избраният шаблон не съществува. Моля, изберете валиден шаблон.',
+                })
+            }
+
             return fail(500, {
                 card,
-                error: `Failed to create card: ${e}`,
+                error: `Възникна грешка при създаването на картичката.`,
             })
         }
     },

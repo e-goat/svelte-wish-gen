@@ -1,8 +1,17 @@
 <script lang="ts">
     import LandingImage from '$lib/components/LandingImage.svelte'
+    import Loader from '$lib/components/Loader.svelte'
+    import { goto } from '$app/navigation';
     import {
         onMount
     } from "svelte";
+
+    let isLoading = false;
+
+    function handleCreateCard() {
+        isLoading = true;
+        goto('/card/create');
+    }
 
     onMount(() => {
         const buttons = document.querySelectorAll('button');
@@ -45,17 +54,23 @@
                 </p>
                 <div class="flex-1"></div>
                 <div class="pt-4">
-                    <a
-                        href="/card/create"
-                        class="w-full md:w-auto block md:inline-block px-8 py-3 rounded-xl shadow-lg transition-scale duration-300 bg-gradient-to-r from-custom-orange-400 to-custom-orange-600 text-white hover:scale-105 focus:outline-none focus:ring-2 focus:ring-custom-orange-400 focus:ring-offset-2 text-center text-lg md:text-base"
+                    <button
+                        on:click={handleCreateCard}
+                        disabled={isLoading}
+                        class="w-full md:w-auto px-8 py-3 rounded-xl shadow-lg duration-300 bg-gradient-to-r from-custom-orange-400 to-custom-orange-600 text-white focus:outline-none focus:ring-2 focus:ring-custom-orange-400 focus:ring-offset-2 text-center text-lg md:text-base disabled:opacity-70 disabled:cursor-not-allowed {isLoading ? '' : 'hover:scale-105 transition-transform'}"
                     >
                         <span class="inline-block align-middle">
-                            <svg class="w-5 h-5 mr-2 inline-block -mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
-                            </svg>
-                            Създайте картичката си
+                            {#if isLoading}
+                                <Loader size="md" color="white" />
+                                <span class="ml-2">Зареждане...</span>
+                            {:else}
+                                <svg class="w-5 h-5 mr-2 inline-block -mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+                                </svg>
+                                Създайте картичката си
+                            {/if}
                         </span>
-                    </a>
+                    </button>
                 </div>
             </div>
             <div class="relative flex justify-center items-center order-1 md:order-2">

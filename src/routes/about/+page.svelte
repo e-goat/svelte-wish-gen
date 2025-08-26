@@ -1,15 +1,25 @@
 <script lang="ts">
     import { onMount } from 'svelte'
     import { fade, fly, scale } from 'svelte/transition'
+    import { goto } from '$app/navigation'
+    import Loader from '$lib/components/Loader.svelte'
 
     let mounted = false
     let activeCard: number | null = null
+    let isNavigating = false
 
     onMount(() => {
         mounted = true
     })
 
-
+    async function handleCreateCard() {
+        isNavigating = true
+        try {
+            await goto('/card/create')
+        } finally {
+            isNavigating = false
+        }
+    }
 </script>
 
 <!-- Animated background particles -->
@@ -204,14 +214,24 @@
                             
                             <!-- Mobile-first CTA Button -->
                             <div class="space-y-3 sm:space-y-0">
-                                <a
-                                    class="inline-flex items-center justify-center w-full sm:w-auto bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 text-sm sm:text-base lg:text-lg"
-                                    href="/card/create">
-                                    <span>Започни да създаваш сега</span>
-                                    <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                                    </svg>
-                                </a>
+                                <button
+                                    class="inline-flex items-center justify-center w-full sm:w-auto bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-transform duration-300 text-sm sm:text-base lg:text-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                                    on:click={handleCreateCard}
+                                    disabled={isNavigating}>
+                                    {#if isNavigating}
+                                        <div class="flex items-center">
+                                            <div class="mr-2">
+                                                <Loader size="sm" color="white" />
+                                            </div>
+                                            <span>Зареждане...</span>
+                                        </div>
+                                    {:else}
+                                        <span>Започни да създаваш сега</span>
+                                        <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                                        </svg>
+                                    {/if}
+                                </button>
                             </div>
                         </div>
                     </div>

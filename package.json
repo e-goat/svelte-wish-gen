@@ -45,6 +45,7 @@
         "@vercel/analytics": "^1.5.0",
         "bindings": "^1.5.0",
         "slug": "^11.0.0",
+        "sweetalert2": "^11.22.5",
         "tailwindcss": "^4.1.10",
         "vite-plugin-commonjs": "^0.10.4"
     },

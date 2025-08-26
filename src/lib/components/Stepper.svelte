@@ -7,10 +7,14 @@
     let { children, steps = 0, form } = $props()
     let initialStep: number = steps + 1 - steps
     ss.currentStep = initialStep
+    
+    function handleSubmit() {
+        ss.isSubmitting = true
+    }
 </script>
 
 <article class="shadow rounded-xl bg-white/70 w-full">
-    <form id="step-form" method="POST" action="?/create">
+    <form id="step-form" method="POST" action="?/create" onsubmit={handleSubmit}>
         <div class="p-8 flex flex-col">
             <div class="mb-10">
                 <Breadcrumb {steps} />
@@ -38,9 +42,10 @@
                 <input type="hidden" name="card" value={JSON.stringify(cs)} />
                 <Button
                     ariaLabel="Бутон за изпращане"
-                    text={'Изпрати форма'}
+                    text={'Изпрати'}
                     disabled={ss.currentStep != steps}
                     buttonType="submit"
+                    loading={ss.isSubmitting}
                 />
                 {/if}
         </div>
