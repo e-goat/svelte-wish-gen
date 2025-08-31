@@ -12,7 +12,6 @@
 
     let { data, form }: PageProps & { form: ActionData } = $props()
 
-    // React to form submission results
     $effect(() => {
         if (form) {
             ss.isSubmitting = false

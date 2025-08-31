@@ -7,7 +7,7 @@
     let { children, steps = 0, form } = $props()
     let initialStep: number = steps + 1 - steps
     ss.currentStep = initialStep
-    
+
     function handleSubmit() {
         ss.isSubmitting = true
     }
@@ -41,8 +41,8 @@
             {:else}
                 <input type="hidden" name="card" value={JSON.stringify(cs)} />
                 <Button
-                    ariaLabel="Бутон за изпращане"
-                    text={'Изпрати'}
+                    ariaLabel="Бутон за запазване на картата"
+                    text={'Запази'}
                     disabled={ss.currentStep != steps}
                     buttonType="submit"
                     loading={ss.isSubmitting}

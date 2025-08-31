@@ -16,14 +16,6 @@ interface StepperState {
     isSubmitting: boolean
 }
 
-interface RecordingState {
-    isRecording: boolean
-    hasRecording: boolean
-    timer: string
-    progress: number
-    recordingStartTime: number
-}
-
 export const cs: CardState = $state({
     title: '',
     sender: '',
@@ -42,16 +34,7 @@ export const ss: StepperState = $state({
     isSubmitting: false,
 })
 
-export const rs: RecordingState = $state({
-    isRecording: false,
-    hasRecording: false,
-    timer: '00:00',
-    progress: 0,
-    recordingStartTime: 0,
-})
-
 export function resetCardState() {
-    // Reset card state
     cs.title = ''
     cs.sender = ''
     cs.receiver = ''
@@ -60,14 +43,6 @@ export function resetCardState() {
     cs.slug = ''
     cs.audioUrl = null
 
-    // Reset stepper state
     ss.currentStep = 1
     ss.isSubmitting = false
-
-    // Reset recording state
-    rs.isRecording = false
-    rs.hasRecording = false
-    rs.timer = '00:00'
-    rs.progress = 0
-    rs.recordingStartTime = 0
 }
