@@ -35,7 +35,6 @@ export const actions: Actions = {
         try {
             cardData = typeof card === 'string' ? JSON.parse(card) : card
 
-            // Validate that templateId is not 0 (user must select a template)
             if (!cardData.templateId || cardData.templateId === 0) {
                 return fail(400, {
                     card,
@@ -43,7 +42,6 @@ export const actions: Actions = {
                 })
             }
 
-            // Validate required fields
             if (
                 !cardData.title?.trim() ||
                 !cardData.receiver?.trim() ||
@@ -55,7 +53,6 @@ export const actions: Actions = {
                 })
             }
 
-            // Create the proper Prisma input with template relation
             const cardInput: Prisma.CardCreateInput = {
                 title: cardData.title,
                 description: cardData.description,
@@ -74,7 +71,6 @@ export const actions: Actions = {
         } catch (e) {
             console.error('Card creation error:', e)
 
-            // Check if it's a foreign key constraint error
             if (
                 e instanceof Error &&
                 e.message.includes('Card_templateId_fkey')

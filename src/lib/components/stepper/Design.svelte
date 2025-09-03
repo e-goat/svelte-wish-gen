@@ -61,7 +61,6 @@
                     <div class="wish-card">
                         <h2 class="text-md font-bold mb-2">{t.title}</h2>
                         <p class="text-sm text-gray-600 mb-2">{t.description}</p>
-                        <img src={t.background} alt={''} class="w-full h-full object-cover"/>
                     </div>
                 </button>
             </li>

@@ -27,7 +27,10 @@ export async function getAllTemplates(limit: number, skip: number) {
             take: limit,
             skip: skip,
             orderBy: { createdAt: 'desc' },
-            cacheStrategy: { ttl: 60 },
+            cacheStrategy: {
+                ttl: 60 * 60 * 24, // seconds * mins * hours
+                tags: ['card_templates'],
+            },
         }),
         prisma.template.count(),
     ])

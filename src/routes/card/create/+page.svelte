@@ -60,33 +60,9 @@
 </script>
 
 <svelte:head>
-    <title>{'Създаи Картичка'}</title>
+    <title>{'КартичкаQR - Създаи Картичка'}</title>
+    <meta name="description" content="Създайте персонализирана поздравителна картичка с вашия почерк и глас. Изберете дизайн, запишете съобщение и споделете с близките си. Create personalized greeting cards with handwriting and voice messages.">
 </svelte:head>
-
-<style>
-    :global(.swal-confirm-button) {
-        background-color: var(--color-custom-orange-400) !important;
-        border: 2px solid var(--color-custom-orange-600) !important;
-        color: white !important;
-        padding: 0.75rem 1.5rem !important;
-        border-radius: 0.75rem !important;
-        font-weight: 600 !important;
-        font-size: 1rem !important;
-        cursor: pointer !important;
-        transition: all 0.2s ease !important;
-    }
-    
-    :global(.swal-confirm-button:hover) {
-        background-color: var(--color-custom-orange-600) !important;
-        transform: translateY(-1px) !important;
-        box-shadow: 0 4px 12px rgba(145, 115, 25, 0.3) !important;
-    }
-    
-    :global(.swal-confirm-button:active) {
-        transform: translateY(0) !important;
-        box-shadow: 0 2px 4px rgba(145, 115, 25, 0.2) !important;
-    }
-</style>
 
 <Stepper steps={4} {form}>
     {#if ss.currentStep == 1}

@@ -45,7 +45,6 @@
 
 {#if totalPages > 1}
     <nav class="flex items-center justify-center space-x-1 mt-8" aria-label="Странициране">
-        <!-- Previous button -->
         {#if currentPage > 1}
             <a 
                 href="{url}?limit={pageSize}&skip={pageSize * (currentPage - 2)}" 

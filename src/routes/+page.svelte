@@ -38,7 +38,8 @@
 </script>
 
 <svelte:head>
-    <title>{import.meta.env.VITE_APP_NAME ?? 'Kartichka QR'}</title>
+    <title>{'КартичкаQR - Поздравителна картичка с вашия личен почерк'}</title>
+    <meta name="description" content="Създайте персонализирана поздравителна картичка с вашия почерк и глас. Изберете дизайн, запишете съобщение и споделете с близките си. Create personalized greeting cards with handwriting and voice messages.">
 </svelte:head>
 
 <div class="max-w-7xl mx-auto flex flex-col">

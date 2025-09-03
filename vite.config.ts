@@ -16,9 +16,9 @@ export default defineConfig({
         global: 'globalThis',
     },
     ssr: {
-        noExternal: ['@prisma/client'],
+        external: ['$lib/db'],
     },
     optimizeDeps: {
-        include: ['@prisma/client'],
+        exclude: ['$lib/db'],
     },
 })

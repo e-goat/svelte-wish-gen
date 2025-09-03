@@ -3,6 +3,7 @@
     import { fade, fly, scale } from 'svelte/transition'
     import { goto } from '$app/navigation'
     import Loader from '$lib/components/Loader.svelte'
+    import "../../app.css"
 
     let mounted = false
     let activeCard: number | null = null
@@ -21,6 +22,11 @@
         }
     }
 </script>
+
+<svelte:head>
+    <title>{'КартичкаQR - За нас'}</title>
+    <meta name="description" content="Научете за KartichkaQR - български екип, който революционизира поздравителните картички с QR кодове и гласови съобщения. Мисия, ценности и визия за свързване на хората чрез технологии. Learn about KartichkaQR - Bulgarian team revolutionizing greeting cards with QR codes and voice messages.">
+</svelte:head>
 
 <!-- Animated background particles -->
 <div class="fixed inset-0 pointer-events-none overflow-hidden">
@@ -250,24 +256,5 @@
         50% {
             transform: translateY(-20px);
         }
-    }
-
-    /* Custom scrollbar */
-    :global(body) {
-        scrollbar-width: thin;
-        scrollbar-color: #10b981 transparent;
-    }
-
-    :global(body::-webkit-scrollbar) {
-        width: 8px;
-    }
-
-    :global(body::-webkit-scrollbar-track) {
-        background: transparent;
-    }
-
-    :global(body::-webkit-scrollbar-thumb) {
-        background: #10b981;
-        border-radius: 4px;
     }
 </style>
