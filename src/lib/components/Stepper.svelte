@@ -14,13 +14,13 @@
     }
 </script>
 
-<article class="shadow rounded-xl bg-white/70 w-full h-[85vh] flex flex-col">
-    <form id="step-form" method="POST" action="?/create" onsubmit={handleSubmit} enctype="multipart/form-data" use:enhance class="flex flex-col h-full">
-        <div class="p-8 flex flex-col flex-1 min-h-0">
-            <div class="mb-10 flex-shrink-0">
+<article class="shadow rounded-xl bg-white/70 w-full flex flex-col">
+    <form id="step-form" method="POST" action="?/create" onsubmit={handleSubmit} enctype="multipart/form-data" use:enhance class="flex flex-col">
+        <div class="p-8 flex flex-col min-h-[85vh]">
+            <div class="mb-10">
                 <Breadcrumb {steps} />
             </div>
-            <div class="flex-1 overflow-y-auto min-h-0 flex items-center justify-center">
+            <div class="flex-1 overflow-y-auto flex items-center justify-center">
                 <div class="w-full">
                     {@render children()}
                 </div>
