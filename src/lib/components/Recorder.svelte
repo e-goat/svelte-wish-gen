@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte'
     import Swal from 'sweetalert2'
-
+    import { cs, rs } from '$lib/state.svelte'
     interface Props {
         recording?: boolean
         clickEvent?: (event: Event) => void
@@ -12,10 +12,9 @@
     const MAX_TIME = 30
     let timeLeft = $state(MAX_TIME)
     let intervalId: ReturnType<typeof setInterval> | null = null
-    let hasStarted = $state(false) // Track if recording has ever started
-    let isRecordingComplete = $state(false) // Track if recording is finished
+    let hasStarted = $state(false)
+    let isRecordingComplete = $state(false)
     let mediaRecorder: MediaRecorder
-    let recordedBlob: Blob | null = $state(null)
     let audioUrl: string | null = $state(null)
     let audioElement: HTMLAudioElement | null = null
     let isPlaying = $state(false)
@@ -36,13 +35,11 @@
                 timeLeft -= 1
                 if (timeLeft <= 0) {
                     if (intervalId) clearInterval(intervalId)
-                    // When time is up, stop the recording completely
                     if (mediaRecorder && mediaRecorder.state === 'recording') {
                         mediaRecorder.stop()
                     }
                     recording = false
                     isRecordingComplete = true
-                    // Only notify parent when timer expires, not for user actions
                     const event = new Event('timeup')
                     clickEvent(event)
                 }
@@ -60,13 +57,21 @@
     })
 
     function handleReset(event: Event) {
-        event?.preventDefault() // Prevent form submission
+        event?.preventDefault()
         
         hasStarted = false
         isRecordingComplete = false
         recording = false
         timeLeft = MAX_TIME
-        recordedBlob = null
+        rs.blob = null
+        cs.audioUrl = null
+
+        const form = document.getElementById('step-form') as HTMLFormElement
+        const existingBlob = form?.querySelector('input[name="record"]')
+        if (existingBlob) {
+            existingBlob.remove()
+        }
+        
         if (audioUrl) {
             URL.revokeObjectURL(audioUrl)
             audioUrl = null
@@ -76,7 +81,6 @@
             clearInterval(intervalId)
             intervalId = null
         }
-        // Don't call clickEvent for reset as it might trigger form submission
     }
 
     function formatTime(seconds: number): string {
@@ -85,7 +89,7 @@
 
     async function handleMediaRecording(event: Event) {
         event.preventDefault()
-        if (recordedBlob && audioUrl) {
+        if (rs.blob && audioUrl) {
             if (isPlaying) {
                 if (audioElement) {
                     audioElement.pause()
@@ -111,11 +115,11 @@
                                 buttonsStyling: false
                             })
                             isPlaying = false
-                            if (recordedBlob) {
+                            if (rs.blob) {
                                 if (audioUrl) {
                                     URL.revokeObjectURL(audioUrl)
                                 }
-                                audioUrl = URL.createObjectURL(recordedBlob)
+                                audioUrl = URL.createObjectURL(rs.blob)
                                 audioElement = null
                             }
                         }
@@ -136,11 +140,11 @@
                     })
                     isPlaying = false
 
-                    if (recordedBlob) {
+                    if (rs.blob) {
                         if (audioUrl) {
                             URL.revokeObjectURL(audioUrl)
                         }
-                        audioUrl = URL.createObjectURL(recordedBlob)
+                        audioUrl = URL.createObjectURL(rs.blob)
                         audioElement = null
                     }
                 }
@@ -150,8 +154,7 @@
 
     const startRecord = (event: Event, time: number = MAX_TIME) => {
         event?.preventDefault()
-        // Clear any previous recording
-        recordedBlob = null
+        rs.blob = null
         if (audioUrl) {
             URL.revokeObjectURL(audioUrl)
             audioUrl = null
@@ -163,51 +166,18 @@
         recording = true
     }
 
-    const stopRecording = (event: Event) => {
-        event?.preventDefault()
-        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-            mediaRecorder.stop()
-        }
-        recording = false
-    }
-
-    const pauseRecording = (event: Event) => {
-        event?.preventDefault()
-        mediaRecorder.pause()
-        recording = false
-    }
-
-    const handleRecord = (event: Event, mediaRecorder: MediaRecorder) => {
-        switch (mediaRecorder.state) {
-            case 'recording':
-                stopRecording(event)
-                break
-            case 'inactive':
-                startRecord(event)
-                break
-            case 'paused':
-                pauseRecording(event)
-                break
-            default:
-                break
-        }
-    }
-
     const handleStartStop = (event: Event) => {
-        event?.preventDefault() // Prevent form submission
+        event?.preventDefault()
         
         if (recording) {
-            // Stop recording
             if (mediaRecorder && mediaRecorder.state === 'recording') {
                 mediaRecorder.stop()
             }
             recording = false
             isRecordingComplete = true
         } else if (!hasStarted) {
-            // Start recording for the first time
             startRecord(event)
         }
-        // Don't call clickEvent here as it might trigger form submission
     }
 
     onMount(async () => {
@@ -245,28 +215,35 @@
 
                     mediaRecorder.onstop = () => {
                         if (chunks.length > 0) {
-                            recordedBlob = new Blob(chunks, {
+                            rs.blob = new Blob(chunks, {
                                 type: mediaRecorder.mimeType || 'audio/webm',
                             })
                             if (audioUrl) {
                                 URL.revokeObjectURL(audioUrl)
                             }
-                            audioUrl = URL.createObjectURL(recordedBlob)
-                            chunks = [] // Reset chunks for next recording
+                            audioUrl = URL.createObjectURL(rs.blob)
+                            cs.audioUrl = audioUrl
+                            chunks = []
+                            
+                            // Add blob to the form for server upload
+                            const form = document.getElementById('step-form') as HTMLFormElement
+                            const existingBlob = form.querySelector('input[name="record"]')
+                            if (existingBlob) {
+                                existingBlob.remove()
+                            }
+                            
+                            const blobInput = document.createElement('input')
+                            blobInput.type = 'file'
+                            blobInput.name = 'record'
+                            blobInput.style.display = 'none'
+                            
+                            const file = new File([rs.blob], cs.cardUuid.trim() + '.webm', { type: rs.blob.type })
+                            const dataTransfer = new DataTransfer()
+                            dataTransfer.items.add(file)
+                            blobInput.files = dataTransfer.files
+                            
+                            form.appendChild(blobInput)
                         }
-                    }
-
-                    mediaRecorder.onerror = (event: Event) => {
-                        Swal.fire({
-                            title: 'Грешка!',
-                            text: 'Възникна грешка при записването на звука.',
-                            icon: 'error',
-                            confirmButtonText: 'Разбрано',
-                            customClass: {
-                                confirmButton: 'swal-confirm-button'
-                            },
-                            buttonsStyling: false
-                        })
                     }
                 })
                 .catch((err) => {
@@ -284,7 +261,7 @@
         } else {
             Swal.fire({
                 title: 'Грешка!',
-                text: 'getUserMedia не е поддържана в вашия браузър!',
+                text: 'Записът на звука не е поддържан в вашия браузър!',
                 icon: 'error',
                 confirmButtonText: 'Разбрано',
                 customClass: {
@@ -307,7 +284,6 @@
                 stroke-width="8"
                 fill="none"
                 class="text-gray-200" />
-            <!-- Progress circle -->
             {#if hasStarted}
                 <circle
                     cx="60"
@@ -331,7 +307,6 @@
             disabled={isRecordingComplete}
             onclick={handleStartStop}>
             {#if isActive}
-                <!-- Stop icon when recording -->
                 <span class="absolute">
                     <svg
                         width="32"
@@ -347,7 +322,6 @@
                     </svg>
                 </span>
             {:else if !isRecordingComplete}
-                <!-- Start icon when ready to record -->
                 <span class="absolute">
                     <svg
                         width="32"
@@ -363,7 +337,6 @@
                     </svg>
                 </span>
             {:else}
-                <!-- Recording complete - disabled state -->
                 <span class="absolute">
                     <svg
                         width="32"
@@ -419,7 +392,7 @@
                 onclick={handleReset}>
                 Отначало
             </button>
-            {#if recordedBlob && audioUrl}
+            {#if rs.blob && audioUrl}
                 <button
                     class="cursor-pointer px-4 py-2 text-sm rounded-lg focus:outline-none focus:ring-2"
                     class:bg-green-200={!isPlaying}

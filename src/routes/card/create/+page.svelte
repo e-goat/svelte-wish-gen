@@ -43,6 +43,8 @@
                     },
                     buttonsStyling: false
                 })
+                ss.currentStep = 1
+                goto('/card/create')
             } else if (form.missing) {
                 Swal.fire({
                     title: 'Липсват данни!',

@@ -1,0 +1,39 @@
+# Robots.txt for Svelte Wish Generator
+
+User-agent: *
+
+# Allow access to main pages
+Allow: /
+Allow: /about
+Allow: /card/create
+
+# Disallow API endpoints to prevent crawling of backend functionality
+Disallow: /api/
+
+# Individual card pages - consider allowing if cards should be publicly discoverable
+# For now, allowing with crawl-delay to be respectful
+Allow: /card/
+Crawl-delay: 1
+
+# Allow static assets
+Allow: /favicon.ico
+Allow: /*.css
+Allow: /*.js
+Allow: /*.jpg
+Allow: /*.png
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
+
+# Sitemap location (dynamic endpoint)
+Sitemap: https://kartichkaqr.com/sitemap.xml
+
+# Common bot restrictions
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+User-agent: DotBot
+Disallow: /

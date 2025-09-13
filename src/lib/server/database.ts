@@ -11,7 +11,6 @@ export async function getCardBySlug(slug: string) {
 }
 
 export async function createCard(data: Prisma.CardCreateInput) {
-    console.log(data)
     return prisma.card.create({
         data,
     })

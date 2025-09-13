@@ -1,5 +1,6 @@
 import type { PageServerLoad } from './$types'
 import type { Actions } from '@sveltejs/kit'
+import { rs, ss } from '$lib/state.svelte'
 
 import * as db from '$lib/server/database'
 import { fail } from '@sveltejs/kit'
@@ -22,50 +23,84 @@ export const load: PageServerLoad = async ({ url }) => {
 }
 
 export const actions: Actions = {
-    create: async ({ request }) => {
+    create: async ({ request, fetch }) => {
         const formData = await request.formData()
-        const card = formData.get('card')
-        if (!card) {
-            return fail(400, {
-                card,
-                missing: true,
-            })
-        }
-        let cardData: any
+        const card = JSON.parse(formData.get('card') as string)
+        let cardInput: Prisma.CardCreateInput
+
         try {
-            cardData = typeof card === 'string' ? JSON.parse(card) : card
-
-            if (!cardData.templateId || cardData.templateId === 0) {
-                return fail(400, {
-                    card,
-                    error: 'Моля, изберете шаблон за картичката.',
-                })
-            }
-
+            // Page 1 validations
             if (
-                !cardData.title?.trim() ||
-                !cardData.receiver?.trim() ||
-                !cardData.sender?.trim()
+                !card.title?.trim() ||
+                !card.receiver?.trim() ||
+                !card.sender?.trim()
             ) {
                 return fail(400, {
                     card,
+                    error: 'Моля, попълнете всички полета.',
+                    errorStep: 1,
                     missing: true,
                 })
             }
 
-            const cardInput: Prisma.CardCreateInput = {
-                title: cardData.title,
-                description: cardData.description,
-                sender: cardData.sender,
-                receiver: cardData.receiver,
-                slug: cardData.slug,
-                audioUrl: cardData.audioUrl,
+            // Page 2 validations
+            if (!card.templateId) {
+                ss.currentStep = 2
+                return fail(400, {
+                    card,
+                    error: 'Моля, изберете шаблон за картичката.',
+                    errorStep: 2,
+                })
+            }
+
+            cardInput = {
+                title: card.title,
+                description: card.description,
+                sender: card.sender,
+                receiver: card.receiver,
+                slug: card.slug,
+                audioUrl: card.audioUrl,
+                cardUuid: card.cardUuid,
                 template: {
-                    connect: { id: cardData.templateId },
+                    connect: { id: card.templateId },
                 },
             }
 
+            const record = formData.get('record') as File | null
+
+            if (record) {
+                const storeFormData = new FormData()
+
+                storeFormData.append('record', record)
+                storeFormData.append('cardUuid', cardInput.cardUuid as string)
+
+                await fetch('/api/store', {
+                    method: 'POST',
+                    body: storeFormData,
+                }).then(async (res) => {
+                    const response = await res.json()
+                    cardInput.audioUrl = response.url
+                })
+            }
+
             await createCard(cardInput)
+
+            // await fetch('/api/send', {
+            //     method: 'POST',
+            //     body: JSON.stringify({
+            //         receiver: cardInput.receiver,
+            //         title: cardInput.title,
+            //         sender: cardInput.sender,
+            //     }),
+            // }).then((res) => {
+            //     if (!res.ok) {
+            //         console.error({
+            //             "status": res.status,
+            //             "statusText": res.statusText,
+            //             "body": res.body
+            //         })
+            //     }
+            // })
 
             return { success: true, card: cardInput }
         } catch (e) {
@@ -87,4 +122,4 @@ export const actions: Actions = {
             })
         }
     },
-}
+} satisfies Actions

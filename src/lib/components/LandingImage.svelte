@@ -1,4 +1,4 @@
-<svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" class="w-full h-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl">
+<svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
   <defs>
     <!-- Enhanced gradients with more contrast -->
     <linearGradient id="leftCardGradient" x1="0%" y1="0%" x2="100%" y2="0%">

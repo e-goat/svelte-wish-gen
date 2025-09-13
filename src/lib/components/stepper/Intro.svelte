@@ -1,7 +1,8 @@
 <script lang="ts">
-import {cs} from '$lib/state.svelte';
-import * as helpers from '$lib/utils/helpers'
-cs.slug = helpers.generateSlug(6);
+    import {cs} from '$lib/state.svelte';
+    import * as helpers from '$lib/utils/helpers'
+    cs.slug = helpers.generateSlug(6);
+    cs.cardUuid = helpers.generateCardUuid();
 </script>
 
 <section>

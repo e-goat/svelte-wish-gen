@@ -9,10 +9,12 @@
     injectAnalytics()
 </script>
 
-<main class="flex flex-col min-h-screen h-full px-4 md:px-8 mx-auto max-w-7xl">
+<main class="min-h-screen flex flex-col">
     <Header logo={logo}/>
-    <div class="flex flex-1 justify-center items-start lg:items-center">
-        {@render children()}
-    </div>
+    <section class="flex justify-center flex-1 pt-4 mx-4">
+        <div class="max-w-7xl w-full">
+            {@render children()}
+        </div>
+    </section>
     <Footer />
 </main>

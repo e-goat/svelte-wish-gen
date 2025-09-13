@@ -33,3 +33,7 @@ export function generateSlug(slugLength: number): string {
     })
     return slugified
 }
+
+export function generateCardUuid(): string {
+    return randomStringWithSpaces(10).trim()
+}

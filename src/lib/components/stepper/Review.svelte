@@ -1,3 +1,7 @@
+<script lang="ts">
+    import Disclaimer from '$lib/components/Disclaimer.svelte'
+</script>
+
 <section>
     <div class="flex flex-col gap-2 sm:gap-3 md:gap-4">
         <aside class="flex flex-col gap-2 sm:gap-3 md:gap-4">
@@ -7,6 +11,9 @@
             <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl italic drop-shadow-sm tracking-wide text-center">
                 {"Проверете дизайна, съобщението и гласовата поздрав преди да завършите."}
             </p>
+            
+            <!-- Development Disclaimer -->
+             <Disclaimer title="Приложението е все още в процес на разработка" description="Моля, опитайте отново по-късно." />
         </aside>
     </div>
 </section>

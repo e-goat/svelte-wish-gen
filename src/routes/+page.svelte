@@ -28,7 +28,6 @@
             const scrolled = window.pageYOffset;
             const parallax = document.querySelector('.floating-animation');
             if (parallax) {
-                // Reduce parallax effect on mobile for better performance and UX
                 const isMobile = window.innerWidth < 640;
                 const speed = scrolled * (isMobile ? 0.2 : 0.5);
                 (parallax as HTMLElement).style.transform = `translateY(${speed}px)`;
@@ -42,10 +41,10 @@
     <meta name="description" content="Създайте персонализирана поздравителна картичка с вашия почерк и глас. Изберете дизайн, запишете съобщение и споделете с близките си. Create personalized greeting cards with handwriting and voice messages.">
 </svelte:head>
 
-<div class="max-w-7xl mx-auto flex flex-col">
-    <div class="p-4 sm:p-6 md:p-8 lg:p-12 bounce-in">
-        <div class="grid md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
-            <div class="flex flex-col h-full justify-center order-2 md:order-1">
+<div class="max-w-7xl">
+    <div class="bounce-in">
+        <div class="grid md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center bg-white/60 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 md:p-10 lg:p-16">
+            <div class="flex flex-col h-full justify-center order-1 md:order-2">
                 <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-800 leading-tight mb-3 sm:mb-4 drop-shadow-sm">
                     Поздравителна картичка с
                     <span class="text-green-600">вашия личен почерк</span>
@@ -64,8 +63,12 @@
                     >
                         <span class="inline-block align-middle">
                             {#if isLoading}
-                                <Loader size="md" color="white" />
-                                <span class="ml-2">Зареждане...</span>
+                                <div class="flex items-center">
+                                    <div class="mr-2">
+                                        <Loader size="sm" color="white" />
+                                    </div>
+                                    <span>Зареждане...</span>
+                                </div>
                             {:else}
                                 <svg class="w-5 h-5 mr-2 inline-block -mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
@@ -76,17 +79,12 @@
                     </button>
                 </div>
             </div>
-            <div class="relative flex justify-center items-center order-1 md:order-2">
-                <div class="floating-animation">
-                    <div class="relative mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl p-2 sm:p-3 md:p-4 lg:p-6">
-                        <LandingImage/>
-                    </div>
-                </div>
+            <div class="hidden justify-center items-center order-2 md:order-2 md:flex">
+                <LandingImage/>
             </div>
         </div>
     </div>
-    <section class="py-8 sm:py-10 md:py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+    <section class="py-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                 <div class="bg-white/60 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 text-center hover:bg-white/80 touch-manipulation">
                     <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-green-500 rounded-full mx-auto mb-3 sm:mb-4 flex items-center justify-center">
@@ -122,46 +120,10 @@
                     <p class="text-sm sm:text-base text-gray-600 leading-relaxed">Избирайте от красиви шаблони или създайте свой уникален дизайн.</p>
                 </div>
             </div>
-        </div>
     </section>
 </div>
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-    .floating-animation {
-        animation: float 6s ease-in-out infinite;
-    }
-
-    @keyframes float {
-
-        0%,
-        100% {
-            transform: translateY(0px);
-        }
-
-        50% {
-            transform: translateY(-10px);
-        }
-    }
-
-    /* Reduce floating animation on smaller screens */
-    @media (max-width: 640px) {
-        .floating-animation {
-            animation: float-mobile 8s ease-in-out infinite;
-        }
-        
-        @keyframes float-mobile {
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-5px);
-            }
-        }
-    }
-
     .bounce-in {
         animation: bounceIn 0.8s ease-out;
     }

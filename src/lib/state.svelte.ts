@@ -6,6 +6,7 @@ interface CardState {
     templateId: number
     slug: string
     audioUrl: string | null
+    cardUuid: string
 }
 
 interface StepperState {
@@ -16,6 +17,10 @@ interface StepperState {
     isSubmitting: boolean
 }
 
+interface RecorderState {
+    blob: Blob | null
+}
+
 export const cs: CardState = $state({
     title: '',
     sender: '',
@@ -24,6 +29,7 @@ export const cs: CardState = $state({
     templateId: 0,
     slug: '',
     audioUrl: null,
+    cardUuid: '',
 })
 
 export const ss: StepperState = $state({
@@ -34,6 +40,10 @@ export const ss: StepperState = $state({
     isSubmitting: false,
 })
 
+export const rs: RecorderState = $state({
+    blob: null,
+})
+
 export function resetCardState() {
     cs.title = ''
     cs.sender = ''
@@ -42,7 +52,10 @@ export function resetCardState() {
     cs.templateId = 0
     cs.slug = ''
     cs.audioUrl = null
+    cs.cardUuid = ''
 
     ss.currentStep = 1
     ss.isSubmitting = false
+
+    rs.blob = null
 }

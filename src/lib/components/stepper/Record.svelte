@@ -12,6 +12,7 @@
                 {"Моля, запишете гласовата си поздрав, за да персонализирате картичката си"}
             </p>
                 <Recorder />
+                <input type="hidden" name="record" id="record" />
         </aside>
     </div>
 </section>
