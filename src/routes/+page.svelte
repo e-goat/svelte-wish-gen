@@ -23,16 +23,6 @@
                 this.style.transform = 'translateY(0)';
             });
         });
-
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.floating-animation');
-            if (parallax) {
-                const isMobile = window.innerWidth < 640;
-                const speed = scrolled * (isMobile ? 0.2 : 0.5);
-                (parallax as HTMLElement).style.transform = `translateY(${speed}px)`;
-            }
-        });
     });
 </script>
 
