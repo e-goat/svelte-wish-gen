@@ -1,6 +1,8 @@
 import type { PageServerLoad } from './$types'
 import type { Actions } from '@sveltejs/kit'
 import { rs, ss } from '$lib/state.svelte'
+import { VercelStorageController } from '$lib/controller/VercelStorage'
+import { MailController } from '$lib/controller/Mail'
 
 import * as db from '$lib/server/database'
 import { fail } from '@sveltejs/kit'
@@ -27,6 +29,7 @@ export const actions: Actions = {
         const formData = await request.formData()
         const card = JSON.parse(formData.get('card') as string)
         let cardInput: Prisma.CardCreateInput
+        ss.isSubmitting = true
 
         try {
             // Page 1 validations
@@ -35,6 +38,7 @@ export const actions: Actions = {
                 !card.receiver?.trim() ||
                 !card.sender?.trim()
             ) {
+                ss.isSubmitting = false
                 return fail(400, {
                     card,
                     error: 'Моля, попълнете всички полета.',
@@ -45,6 +49,7 @@ export const actions: Actions = {
 
             // Page 2 validations
             if (!card.templateId) {
+                ss.isSubmitting = false
                 ss.currentStep = 2
                 return fail(400, {
                     card,
@@ -66,44 +71,29 @@ export const actions: Actions = {
                 },
             }
 
-            const record = formData.get('record') as File | null
-
-            if (record) {
-                const storeFormData = new FormData()
-
-                storeFormData.append('record', record)
-                storeFormData.append('cardUuid', cardInput.cardUuid as string)
-
-                await fetch('/api/store', {
-                    method: 'POST',
-                    body: storeFormData,
-                }).then(async (res) => {
-                    const response = await res.json()
-                    cardInput.audioUrl = response.url
+            const file = formData.get('record') as File | null
+            if (file) {
+                const storeResponse = await VercelStorageController.store({
+                    file: file,
+                    mimeType: 'webm',
+                    uuid: cardInput.cardUuid as string,
                 })
+                cardInput.audioUrl = storeResponse.url
             }
 
             await createCard(cardInput)
 
-            // await fetch('/api/send', {
-            //     method: 'POST',
-            //     body: JSON.stringify({
-            //         receiver: cardInput.receiver,
-            //         title: cardInput.title,
-            //         sender: cardInput.sender,
-            //     }),
-            // }).then((res) => {
-            //     if (!res.ok) {
-            //         console.error({
-            //             "status": res.status,
-            //             "statusText": res.statusText,
-            //             "body": res.body
-            //         })
-            //     }
+            // MailController.send({
+            //     to: cardInput.receiver,
+            //     from: cardInput.sender,
+            //     name: cardInput.receiver,
+            //     title: cardInput.title,
+            //     senderName: cardInput.sender,
             // })
 
             return { success: true, card: cardInput }
         } catch (e) {
+            ss.isSubmitting = false
             console.error('Card creation error:', e)
 
             if (

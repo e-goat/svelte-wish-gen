@@ -1,6 +1,6 @@
 <script lang="ts">
     import Button from '$lib/components/Button.svelte'
-    import { defineStepperEvent } from '$lib/controller/StepController'
+    import { defineStepperEvent } from '$lib/controller/Stepper'
     import { cs, ss } from '$lib/state.svelte'
     import Breadcrumb from './stepper/Breadcrumb.svelte'
 	import { enhance } from '$app/forms';
@@ -8,14 +8,10 @@
     let { children, steps = 0, form } = $props()
     let initialStep: number = steps + 1 - steps
     ss.currentStep = initialStep
-
-    function handleSubmit() {
-        ss.isSubmitting = true
-    }
 </script>
 
 <article class="shadow rounded-xl bg-white/70 w-full flex flex-col">
-    <form id="step-form" method="POST" action="?/create" onsubmit={handleSubmit} enctype="multipart/form-data" use:enhance class="flex flex-col">
+    <form id="step-form" method="POST" action="?/create" enctype="multipart/form-data" use:enhance class="flex flex-col">
         <div class="p-8 flex flex-col min-h-[85vh]">
             <div class="mb-10">
                 <Breadcrumb {steps} />
@@ -48,9 +44,9 @@
                 <Button
                     ariaLabel="Бутон за запазване на картата"
                     text={'Запази'}
+                    buttonType="submit"
                     disabled={true}
-                    buttonType="button"
-                    loading={false}
+                    loading={ss.isSubmitting}
                 />
                 {/if}
         </div>
