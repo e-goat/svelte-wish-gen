@@ -35,8 +35,9 @@
             >
                 <WishCard
                     cardFront={selectedTemplate?.background || ""}
-                    cardBack={selectedTemplate?.backgroundBack || ""}
+                    cardBack={selectedTemplate?.background || ""}
                     title={selectedTemplate?.title || ""}
+                    description={selectedTemplate?.description || ""}
                 />
             </div>
         </aside>

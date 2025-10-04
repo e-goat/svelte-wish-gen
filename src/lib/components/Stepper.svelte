@@ -19,6 +19,21 @@
     });
 </script>
 
+<div
+    class="px-px text-3xl font-medium max-w-[381px] text-zinc-800 mx-auto mb-6"
+>
+    <div class="flex flex-col justify-center">
+        <div class="self-center" data-name="Създаване на картичка">
+            Създаване на картичка
+        </div>
+        <img
+            src="https://api.builder.io/api/v1/image/assets/4a0213629c3d4d16819d485544a6041f/fcdd06e83421f850362bbf1507002e7f74febf42?placeholderIfAbsent=true"
+            class="object-contain mt-4 w-full aspect-[200]"
+            alt="Card creation illustration"
+        />
+    </div>
+</div>
+
 <article class="shadow rounded-xl bg-white/70 w-full flex flex-col">
     <form
         id="step-form"
@@ -33,7 +48,7 @@
                 <Breadcrumb {steps} />
             </div>
             <div
-                class="flex-1 overflow-y-auto flex items-center justify-center bg-gray-100 p-5 rounded-xl border border-gray-300"
+                class="flex-1 overflow-y-auto flex items-center justify-center bg-custom-orange-200/5 p-5 rounded-xl border border-gray-300"
             >
                 {@render children()}
             </div>
@@ -63,6 +78,7 @@
                     text={"Запази"}
                     buttonType="submit"
                     loading={ss.isSubmitting}
+                    disabled={true}
                 />
             {/if}
         </div>

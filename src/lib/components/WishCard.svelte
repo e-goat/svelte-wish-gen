@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { cs } from "$lib/state.svelte";
+
     export let cardFront: string = "";
     export let cardBack: string = "";
     export let title: string = "";
@@ -14,12 +16,12 @@
         style="--card-front-img: url({cardFront}); --card-back-img: url({cardBack});"
     >
         <div
-            class="box--front border-2 border-black"
+            class="box--front border-2 border-black flex flex-col text-center justify-center gap-8"
             class:bg-custom-teal-300={!hasCardFront}
             class:card-front-img={hasCardFront}
         >
-            <h2 class="text-black">{title}</h2>
-            <!-- <p class="">{description}</p> -->
+            <h1 class="text-black text-lg">{cs.title || title}</h1>
+            <p class="">{cs.description || description}</p>
         </div>
         <div
             class="box--side-left bg-custom-teal-300 border-2 border-black"

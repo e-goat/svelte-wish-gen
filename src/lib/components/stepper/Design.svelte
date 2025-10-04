@@ -81,7 +81,7 @@
             {/each}
         </section>
         <ul
-            class="mt-6 p-6 grid gap-2 md:grid-cols-2 lg:grid-cols-4 h-[460px] overflow-auto shadow rounded-xl bg-white"
+            class="mt-6 p-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4 h-[460px] overflow-auto"
         >
             {#each data.templates as t}
                 <li>
@@ -95,6 +95,7 @@
                             "rounded-xl",
                             "shadow-sm",
                             "items-center",
+                            "bg-white",
                             "cursor-pointer",
                             t.id == cs.templateId
                                 ? "border border-solid border-custom-orange-600"
