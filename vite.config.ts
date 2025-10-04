@@ -1,24 +1,24 @@
-import { sveltekit } from '@sveltejs/kit/vite'
-import { defineConfig } from 'vite'
-import commonJS from 'vite-plugin-commonjs'
-import tailwindcss from '@tailwindcss/vite'
+import { sveltekit } from "@sveltejs/kit/vite";
+import { defineConfig } from "vite";
+import commonJS from "vite-plugin-commonjs";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
     plugins: [
         tailwindcss(),
         sveltekit(),
         commonJS({
-            filter: (id) => id.includes('/db'),
+            filter: (id) => id.includes("/db"),
         }),
     ],
     define: {
-        __dirname: 'import.meta.dirname',
-        global: 'globalThis',
+        __dirname: "import.meta.dirname",
+        global: "globalThis",
     },
     ssr: {
-        external: ['$lib/db'],
+        external: ["$lib/db"],
     },
     optimizeDeps: {
-        exclude: ['$lib/db'],
+        exclude: ["$lib/db"],
     },
-})
+});

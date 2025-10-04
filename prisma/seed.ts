@@ -1,7 +1,7 @@
 import { PrismaClient, Prisma } from '../src/lib/db'
 import { withAccelerate } from '@prisma/extension-accelerate'
 
-export const prisma = new PrismaClient().$extends(withAccelerate())
+const prisma = new PrismaClient().$extends(withAccelerate())
 
 const templateData: Prisma.TemplateCreateInput[] = [
     // Birthday Templates

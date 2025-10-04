@@ -36,6 +36,7 @@ model Template {
     description String   @default("")
     type        String
     background  String
+    backgroundBack String @default("")
     font        String   @default("Arial")
     createdAt   DateTime @default(now())
 }

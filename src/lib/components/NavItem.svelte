@@ -1,6 +1,33 @@
 <script lang="ts">
-    let { children, target, ...props } = $props();
+    let { children, target, onclick = undefined, ...props } = $props();
 </script>
 
-<a href={target}
-    class="text-xl font-family-roboto text-custom-orange-600/90 hover:bg-white/20 hover:underline md:px-4 px-2 py-2 rounded-full transition-colors duration-200 {props.class}">{@render children?.()}</a>
+<a href={target} class="nav-item {props.class || ''}" {onclick}>
+    {@render children?.()}
+</a>
+
+<style>
+    .nav-item {
+        color: #303030;
+        position: relative;
+        cursor: pointer;
+        font:
+            500 18px Montserrat,
+            -apple-system,
+            Roboto,
+            Helvetica,
+            sans-serif;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .nav-item:hover {
+        color: rgba(48, 48, 48, 0.8);
+    }
+
+    @media (max-width: 991px) {
+        .nav-item {
+            font-size: 16px;
+        }
+    }
+</style>

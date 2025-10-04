@@ -1,20 +1,24 @@
 /* Browsers require that @import statements come before any other rules, so URL imports need to be above imports like @import "tailwindcss" which are inlined in the compiled CSS. */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chiron+Sung+HK:ital,wght@0,200..900;1,200..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-@import 'tailwindcss';
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chiron+Sung+HK:ital,wght@0,200..900;1,200..900&family=Montserrat:wght@400;500&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
 
 @theme {
     --color-amber-111: #ffede4;
-    --color-custom-teal-200: #93e0a2;
+    --color-custom-teal-200: #f4f2ee;
     --color-custom-teal-300: #92da9f;
     --color-custom-orange-200: #ffde82;
     --color-custom-orange-400: #caa74e;
     --color-custom-orange-600: #917319;
-    --default-font-family: 'Chiron Sung HK', serif;
+    --color-brand-gold: #e7b85c;
+    --color-brand-coral: #f27979;
+    --color-brand-purple: #de8cfc;
+    --default-font-family: "Chiron Sung HK", serif;
     /* --default-font-family: 'Roboto', sans-serif; */
-    --default-font-variation-settings: 'wght' 550;
-    --font-family-roboto: 'Roboto', sans-serif;
-    --font-family-csh: 'Chiron Sung HK', serif;
-    --font-family-bebas: 'Bebas Neue', sans-serif;
+    --default-font-variation-settings: "wght" 550;
+    --font-family-roboto: "Roboto", sans-serif;
+    --font-family-csh: "Chiron Sung HK", serif;
+    --font-family-bebas: "Bebas Neue", sans-serif;
+    --font-family-montserrat: "Montserrat", sans-serif;
 }
 
 .disable {
@@ -26,7 +30,6 @@
 
 body {
     scrollbar-width: thin;
-    scrollbar-color: #10b981 transparent;
 }
 
 body::-webkit-scrollbar {

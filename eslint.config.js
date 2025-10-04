@@ -1,8 +1,9 @@
+import prettier from "eslint-config-prettier";
+import svelte from "eslint-plugin-svelte";
 // @ts-check
-
-import eslint from '@eslint/js'
-import tseslint from 'typescript-eslint'
-import eslintConfigPrettier from 'eslint-config-prettier/flat'
+import eslint from "@eslint/js";
+import tseslint from "typescript-eslint";
+import eslintConfigPrettier from "eslint-config-prettier/flat";
 
 export default tseslint.config(
     eslint.configs.recommended,
@@ -10,12 +11,14 @@ export default tseslint.config(
     eslintConfigPrettier,
     {
         ignores: [
-            'node_modules/*',
-            '.svelte-kit/*',
+            "node_modules/*",
+            ".svelte-kit/*",
             // '**/*.svelte',
-            'prisma/*',
-            'src/lib/assets/*',
-            'src/lib/db/*',
+            "prisma/*",
+            "src/lib/assets/*",
+            "src/lib/db/*",
         ],
-    }
-)
+    },
+    prettier,
+    ...svelte.configs.prettier,
+);

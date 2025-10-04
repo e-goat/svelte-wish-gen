@@ -1,41 +1,58 @@
 <script lang="ts">
-    import Button from '$lib/components/Button.svelte'
-    import { defineStepperEvent } from '$lib/controller/Stepper'
-    import { cs, ss } from '$lib/state.svelte'
-    import Breadcrumb from './stepper/Breadcrumb.svelte'
-	import { enhance } from '$app/forms';
+    import Button from "$lib/components/Button.svelte";
+    import { defineStepperEvent } from "$lib/controller/Stepper";
+    import { cs, ss } from "$lib/state.svelte";
+    import Breadcrumb from "./stepper/Breadcrumb.svelte";
+    import { enhance } from "$app/forms";
+    import { onMount, onDestroy } from "svelte";
 
-    let { children, steps = 0, form } = $props()
-    let initialStep: number = steps + 1 - steps
-    ss.currentStep = initialStep
+    let { children, steps = 0, form } = $props();
+    let initialStep: number = steps + 1 - steps;
+    ss.currentStep = initialStep;
+    ss.isRendering = false;
+    onMount(() => {
+        ss.isRendering = true;
+    });
+
+    onDestroy(() => {
+        ss.isRendering = false;
+    });
 </script>
 
 <article class="shadow rounded-xl bg-white/70 w-full flex flex-col">
-    <form id="step-form" method="POST" action="?/create" enctype="multipart/form-data" use:enhance class="flex flex-col">
+    <form
+        id="step-form"
+        method="POST"
+        action="?/create"
+        enctype="multipart/form-data"
+        use:enhance
+        class="flex flex-col"
+    >
         <div class="p-8 flex flex-col min-h-[85vh]">
             <div class="mb-10">
                 <Breadcrumb {steps} />
             </div>
-            <div class="flex-1 overflow-y-auto flex items-center justify-center">
-                <div class="w-full">
-                    {@render children()}
-                </div>
+            <div
+                class="flex-1 overflow-y-auto flex items-center justify-center bg-gray-100 p-5 rounded-xl border border-gray-300"
+            >
+                {@render children()}
             </div>
         </div>
         <div class="flex justify-between px-8 pb-8 flex-shrink-0">
             <Button
                 ariaLabel="Предишна стъпка"
-                text={'Назад'}
-                clickEvent={(e) => defineStepperEvent('prev', steps, initialStep)}
+                text={"Назад"}
+                clickEvent={(e) =>
+                    defineStepperEvent("prev", steps, initialStep)}
                 disabled={ss.currentStep == initialStep}
                 buttonType="button"
             />
             {#if ss.currentStep != steps}
                 <Button
                     ariaLabel="Следваща стъпка"
-                    text={'Напред'}
+                    text={"Напред"}
                     clickEvent={(e) =>
-                        defineStepperEvent('next', steps, initialStep)}
+                        defineStepperEvent("next", steps, initialStep)}
                     disabled={ss.currentStep == steps}
                     buttonType="button"
                 />
@@ -43,12 +60,11 @@
                 <input type="hidden" name="card" value={JSON.stringify(cs)} />
                 <Button
                     ariaLabel="Бутон за запазване на картата"
-                    text={'Запази'}
+                    text={"Запази"}
                     buttonType="submit"
-                    disabled={true}
                     loading={ss.isSubmitting}
                 />
-                {/if}
+            {/if}
         </div>
     </form>
 </article>

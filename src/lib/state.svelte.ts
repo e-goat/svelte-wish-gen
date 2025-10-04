@@ -1,36 +1,37 @@
 interface CardState {
-    title: string
-    sender: string
-    receiver: string
-    description: string
-    templateId: number
-    slug: string
-    audioUrl: string | null
-    cardUuid: string
+    title: string;
+    sender: string;
+    receiver: string;
+    description: string;
+    templateId: number;
+    slug: string;
+    audioUrl: string | null;
+    cardUuid: string;
 }
 
 interface StepperState {
-    initialStep: number
-    currentStep: number
-    finalStep: number
-    steps: number
-    isSubmitting: boolean
+    initialStep: number;
+    currentStep: number;
+    finalStep: number;
+    steps: number;
+    isSubmitting: boolean;
+    isRendering: boolean;
 }
 
 interface RecorderState {
-    blob: Blob | null
+    blob: Blob | null;
 }
 
 export const cs: CardState = $state({
-    title: '',
-    sender: '',
-    receiver: '',
-    description: '',
+    title: "",
+    sender: "",
+    receiver: "",
+    description: "",
     templateId: 0,
-    slug: '',
+    slug: "",
     audioUrl: null,
-    cardUuid: '',
-})
+    cardUuid: "",
+});
 
 export const ss: StepperState = $state({
     initialStep: 0,
@@ -38,24 +39,25 @@ export const ss: StepperState = $state({
     finalStep: 0,
     steps: 0,
     isSubmitting: false,
-})
+    isRendering: false,
+});
 
 export const rs: RecorderState = $state({
     blob: null,
-})
+});
 
 export function resetCardState() {
-    cs.title = ''
-    cs.sender = ''
-    cs.receiver = ''
-    cs.description = ''
-    cs.templateId = 0
-    cs.slug = ''
-    cs.audioUrl = null
-    cs.cardUuid = ''
+    cs.title = "";
+    cs.sender = "";
+    cs.receiver = "";
+    cs.description = "";
+    cs.templateId = 0;
+    cs.slug = "";
+    cs.audioUrl = null;
+    cs.cardUuid = "";
 
-    ss.currentStep = 1
-    ss.isSubmitting = false
+    ss.currentStep = 1;
+    ss.isSubmitting = false;
 
-    rs.blob = null
+    rs.blob = null;
 }
