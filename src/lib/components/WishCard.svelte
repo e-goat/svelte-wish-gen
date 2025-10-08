@@ -57,7 +57,7 @@
     role="button"
     tabindex="0"
 >
-    {#if true}
+    {#if isOpened}
         <div class="opened-card">
             <div class="card-content">
                 <!-- Front Section -->
