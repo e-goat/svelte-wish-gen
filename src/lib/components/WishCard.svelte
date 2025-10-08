@@ -19,7 +19,7 @@
     let isOpened = $state(false);
     let isTransitioning = $state(false);
     let textColor = $state("black");
-    let frontElement: HTMLDivElement;
+    let frontElement = $state<HTMLDivElement>();
 
     let hasCardFront = $derived(cardFront != "");
     let hasCardBack = $derived(cardBack != "");
@@ -57,50 +57,234 @@
     role="button"
     tabindex="0"
 >
-    {#if isOpened}
+    {#if true}
         <div class="opened-card">
-            <div class="flex flex-col justify-around md:flex-row md:divide-x-1">
-                <!-- Front -->
-                <div
-                    class="inner-section px-4 flex justify-around items-center not-md:min-h-[250px]"
-                >
-                    <section>
-                        <h1 class="text-black text-xl mb-4">
-                            {cs.title || title}
-                        </h1>
-                        <p class="text-gray-700">
-                            {cs.description || description}
-                        </p>
-                    </section>
-                </div>
-                <div
-                    class="not-md:border-b-1 not-md:border-dotted not-md:w-full not-md:mt-5 not-md:mb-5"
-                ></div>
-                <!-- Back -->
-                <div class="back-section px-4 text-center not-md:min-h-[250px]">
-                    <div class="default-back-content">
-                        <div class="mb-4">
-                            <p class="text-sm text-gray-700 mb-2">
-                                Благодарим ви за използването на
-                            </p>
-                            <p class="text-lg font-bold text-gray-800">
-                                KartichkaQR
+            <div class="card-content">
+                <!-- Front Section -->
+                <div class="front-section">
+                    <div class="content-wrapper">
+                        <div class="text-content">
+                            <h1 class="card-title">
+                                {cs.title || title}
+                            </h1>
+                            <p class="card-description">
+                                {cs.description || description}
                             </p>
                         </div>
-                        <div class="mb-4">
-                            <p class="text-xs text-gray-600 mb-1">Контакт:</p>
+                        <div class="qr-container">
+                            <div class="qr-code-placeholder">
+                                <!-- Dummy QR Code SVG -->
+                                <svg
+                                    width="64"
+                                    height="64"
+                                    viewBox="0 0 64 64"
+                                    class="dummy-qr"
+                                >
+                                    <rect width="64" height="64" fill="white" />
+                                    <!-- QR code pattern simulation -->
+                                    <rect
+                                        x="8"
+                                        y="8"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                    <rect
+                                        x="16"
+                                        y="8"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                    <rect
+                                        x="32"
+                                        y="8"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                    <rect
+                                        x="40"
+                                        y="8"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                    <rect
+                                        x="48"
+                                        y="8"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+
+                                    <rect
+                                        x="8"
+                                        y="16"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                    <rect
+                                        x="24"
+                                        y="16"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                    <rect
+                                        x="40"
+                                        y="16"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                    <rect
+                                        x="48"
+                                        y="16"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+
+                                    <rect
+                                        x="8"
+                                        y="24"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                    <rect
+                                        x="16"
+                                        y="24"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                    <rect
+                                        x="32"
+                                        y="24"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                    <rect
+                                        x="48"
+                                        y="24"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+
+                                    <rect
+                                        x="8"
+                                        y="32"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                    <rect
+                                        x="24"
+                                        y="32"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                    <rect
+                                        x="32"
+                                        y="32"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                    <rect
+                                        x="40"
+                                        y="32"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+
+                                    <rect
+                                        x="8"
+                                        y="40"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                    <rect
+                                        x="16"
+                                        y="40"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                    <rect
+                                        x="40"
+                                        y="40"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                    <rect
+                                        x="48"
+                                        y="40"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+
+                                    <rect
+                                        x="8"
+                                        y="48"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                    <rect
+                                        x="24"
+                                        y="48"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                    <rect
+                                        x="32"
+                                        y="48"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                    <rect
+                                        x="48"
+                                        y="48"
+                                        width="6"
+                                        height="6"
+                                        fill="black"
+                                    />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Divider -->
+                <div class="section-divider"></div>
+
+                <!-- Back Section -->
+                <div class="back-section">
+                    <div class="contact-content">
+                        <div class="brand-section">
+                            <p class="brand-name">KartichkaQR</p>
+                        </div>
+                        <div class="contact-section">
+                            <p class="contact-label">Контакт:</p>
                             <a
                                 href="mailto:example@yahoo.com"
-                                class="text-sm text-blue-600 underline"
-                                >example@yahoo.com</a
+                                class="contact-email"
                             >
-                        </div>
-                        <div class="qr-code-template p-2">
-                            <div
-                                class="w-16 h-16 flex items-center justify-center"
-                            >
-                                <div class="text-xs text-gray-400">QR</div>
-                            </div>
+                                example@yahoo.com
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -126,14 +310,6 @@
                 >
                     {cs.title || title}
                 </h1>
-                <p
-                    class="px-2"
-                    class:text-white={textColor === "white"}
-                    class:text-black={textColor === "black"}
-                    class:text-shadow={hasCardFront}
-                >
-                    {cs.description || description}
-                </p>
             </div>
             <div
                 class="box--side-left bg-custom-teal-300 border-2 border-black"
@@ -299,47 +475,213 @@
     /* Opened card styles */
     .opened-card {
         width: 100%;
-        max-width: 600px;
+        max-width: 800px;
         background: white;
-        border-radius: 12px;
+        border-radius: 16px;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        padding: 1.5rem;
+        padding: 2rem;
         animation: slideIn 0.6s ease-out;
-        border: 2px solid #e5e7eb;
+        border: 1px solid #e5e7eb;
+        margin: 0 auto;
     }
 
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
+        .opened-card {
+            padding: 1.5rem;
+            max-width: 95%;
+        }
+    }
+
+    @media (max-width: 480px) {
         .opened-card {
             padding: 1rem;
         }
     }
 
-    .default-back-content {
+    .card-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        min-height: 300px;
+    }
+
+    @media (min-width: 768px) {
+        .card-content {
+            flex-direction: row;
+            min-height: 250px;
+        }
+    }
+
+    /* Front Section */
+    .front-section {
+        background-color: rgba(147, 197, 253, 0.1);
+        border-radius: 12px;
+        padding: 1.5rem;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    @media (max-width: 767px) {
+        .front-section {
+            padding: 1rem;
+            min-height: 200px;
+        }
+    }
+
+    .content-wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+        .content-wrapper {
+            flex-direction: row;
+            align-items: center;
+            gap: 2rem;
+        }
+    }
+
+    .text-content {
         text-align: center;
-        gap: 1rem;
+        flex: 1;
     }
 
-    .inner-section {
-        background-color: rgba(
-            147,
-            197,
-            253,
-            0.15
-        ); /* Light blue transparent */
+    @media (min-width: 768px) {
+        .text-content {
+            text-align: left;
+        }
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #1f2937;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+    }
+
+    @media (max-width: 480px) {
+        .card-title {
+            font-size: 1.25rem;
+        }
+    }
+
+    .card-description {
+        color: #374151;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    /* QR Code Section */
+    .qr-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .qr-code-placeholder {
+        background: white;
         border-radius: 8px;
+        padding: 0.75rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e5e7eb;
     }
 
+    .dummy-qr {
+        display: block;
+    }
+
+    /* Section Divider */
+    .section-divider {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #d1d5db, transparent);
+        margin: 1rem 0;
+    }
+
+    @media (min-width: 768px) {
+        .section-divider {
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(
+                180deg,
+                transparent,
+                #d1d5db,
+                transparent
+            );
+            margin: 0 1rem;
+        }
+    }
+
+    /* Back Section */
     .back-section {
-        background-color: rgba(
-            167,
-            139,
-            250,
-            0.15
-        ); /* Light purple transparent */
-        border-radius: 8px;
+        background-color: rgba(167, 139, 250, 0.1);
+        border-radius: 12px;
+        padding: 1.5rem;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    @media (max-width: 767px) {
+        .back-section {
+            padding: 1rem;
+            min-height: 150px;
+        }
+    }
+
+    .contact-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    .brand-section {
+        margin-bottom: 0.5rem;
+    }
+
+    .brand-name {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #1f2937;
+        margin: 0;
+    }
+
+    .contact-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .contact-label {
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin: 0;
+    }
+
+    .contact-email {
+        color: #2563eb;
+        text-decoration: underline;
+        font-size: 0.95rem;
+        font-weight: 500;
+    }
+
+    .contact-email:hover {
+        color: #1d4ed8;
     }
 
     @keyframes slideIn {
