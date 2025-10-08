@@ -14,7 +14,7 @@
     <title>{"Картичка QR - Поздравителна картичка с вашия личен почерк"}</title>
     <meta
         name="description"
-        content="Създайте персонализирана поздравителна картичка с вашия почерк и глас. Изберете д��зайн, запишете съобщение и споделете с близките си. Create personalized greeting cards with handwriting and voice messages."
+        content="Създайте персонализирана поздравителна картичка с вашия почерк и глас. Изберете дизайн, запишете съобщение и споделете с близките си. Create personalized greeting cards with handwriting and voice messages. KartichkaQR - български екип, който революционизира поздравителните картички с QR кодове и гласови съобщения."
     />
 </svelte:head>
 
@@ -49,14 +49,14 @@
 
     <!-- Main Content -->
     <div
-        class="flex gap-10 justify-between items-center w-full max-md:flex-col max-md:gap-16"
+        class="flex justify-between items-center w-full flex-col-reverse lg:flex-row gap-16"
     >
         <!-- Features Section -->
         <div
             class="flex flex-col flex-1 gap-10 items-start max-w-[600px] max-md:max-w-full"
         >
             <!-- Feature 1: Design -->
-            <div class="flex flex-col gap-4 items-start w-full">
+            <div class="flex flex-col md:flex-row gap-4 items-start w-full">
                 <div>
                     <svg
                         width="56"
@@ -88,7 +88,7 @@
             </div>
 
             <!-- Feature 2: Message -->
-            <div class="flex flex-col gap-4 items-start w-full">
+            <div class="flex flex-col md:flex-row gap-4 items-start w-full">
                 <div>
                     <svg
                         width="66"
@@ -113,14 +113,13 @@
                     <div
                         class="w-full text-base font-medium opacity-50 text-zinc-800 max-sm:text-sm"
                     >
-                        Създавайте красиви картички за секунди с нашите
-                        интуитивни инструменти за дизайн.
+                        Създавайте красиви картички за секунди.
                     </div>
                 </div>
             </div>
 
             <!-- Feature 3: Voice -->
-            <div class="flex flex-col gap-4 items-start w-full">
+            <div class="flex flex-col md:flex-row gap-4 items-start w-full">
                 <div>
                     <svg
                         width="64"
@@ -145,8 +144,8 @@
                     <div
                         class="w-full text-base font-medium opacity-50 text-zinc-800 max-sm:text-sm"
                     >
-                        Добавете лична гласова поздрав, за да направите
-                        картичка��а си наистина специална.
+                        Добавете личен гласов поздрав, за да направите
+                        картичката си наистина специална.
                     </div>
                 </div>
             </div>

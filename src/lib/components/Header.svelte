@@ -4,6 +4,8 @@
     import Loader from "$lib/components/Loader.svelte";
     import Hamburger from "$lib/components/Hamburger.svelte";
     import { ss } from "$lib/state.svelte";
+
+    let { logo = "" }: { logo?: string } = $props();
     let mobileMenuOpen = $state(false);
     let isLoading = $state(false);
 
@@ -34,13 +36,16 @@
 
 <header class="header-container">
     <div class="header-content">
-        <!-- Logo -->
-        <button class="logo-link" aria-label="Начало" onclick={handleHome}>
-            <div class="logo-text">
-                <span class="logo-kartichka">KARTICHKA</span><span
-                    class="logo-qr">QR</span
-                >
-            </div>
+        <button
+            class="logo-link flex items-center gap-2 text-amber-600 font-bold text-lg hover:text-amber-800 transition-colors"
+            aria-label="Начало"
+            onclick={handleHome}
+        >
+            <img
+                alt="KartichkaQR"
+                src={logo}
+                class="w-10 h-10 rounded-full object-cover shadow"
+            />
         </button>
 
         <!-- Desktop Navigation -->

@@ -79,16 +79,16 @@ export const actions: Actions = {
                 },
             };
 
-            const file = formData.get("record") as File | null;
-            if (file) {
-                const storeResponse = await VercelStorageController.store({
-                    file: file,
-                    mimeType: "webm",
-                    uuid: cardInput.cardUuid as string,
-                });
-                cardInput.audioUrl = storeResponse.url;
-            }
-            console.log(cardInput.audioUrl);
+            // const file = formData.get("record") as File | null;
+            // if (file) {
+            //     const storeResponse = await VercelStorageController.store({
+            //         file: file,
+            //         mimeType: "webm",
+            //         uuid: cardInput.cardUuid as string,
+            //     });
+            //     cardInput.audioUrl = storeResponse.url;
+            // }
+
             // await createCard(cardInput)
 
             // MailController.send({

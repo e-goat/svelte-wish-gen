@@ -22,6 +22,10 @@ interface RecorderState {
     blob: Blob | null;
 }
 
+interface TemplateColorCache {
+    colors: Map<number, string>;
+}
+
 export const cs: CardState = $state({
     title: "",
     sender: "",
@@ -44,6 +48,10 @@ export const ss: StepperState = $state({
 
 export const rs: RecorderState = $state({
     blob: null,
+});
+
+export const tcc: TemplateColorCache = $state({
+    colors: new Map(),
 });
 
 export function resetCardState() {

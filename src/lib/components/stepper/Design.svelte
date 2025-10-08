@@ -1,7 +1,9 @@
 <script lang="ts">
-    import { cs } from "$lib/state.svelte";
+    import { cs, tcc } from "$lib/state.svelte";
     import Pagination from "../Pagination.svelte";
     import { goto } from "$app/navigation";
+    import { getContrastingColorFromImage } from "$lib/utils/helpers";
+    import { onMount } from "svelte";
 
     type PageProp = {
         data: {
@@ -22,6 +24,7 @@
     };
 
     let { data }: PageProp = $props();
+
     function handleClickEvent(event: MouseEvent) {
         const target = event.currentTarget as HTMLElement | null;
         const cards = document.querySelectorAll(".wish-card");
@@ -50,6 +53,24 @@
         event.preventDefault();
         goto(`/card/create?type=${type}`);
     }
+
+    // Calculate text colors for all templates after mount (with caching)
+    onMount(() => {
+        const cards = document.querySelectorAll(".wish-card");
+        cards.forEach(async (card, index) => {
+            const template = data.templates[index];
+            if (template) {
+                // Check if color is already cached
+                if (!tcc.colors.has(template.id)) {
+                    const color = await getContrastingColorFromImage(
+                        card as HTMLElement,
+                    );
+                    // Update the cache with the new color
+                    tcc.colors = new Map(tcc.colors.set(template.id, color));
+                }
+            }
+        });
+    });
 </script>
 
 <section>
@@ -81,7 +102,7 @@
             {/each}
         </section>
         <ul
-            class="mt-6 p-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4 h-[460px] overflow-auto"
+            class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4 h-[460px] overflow-auto"
         >
             {#each data.templates as t}
                 <li>
@@ -106,34 +127,23 @@
                             class="wish-card h-full w-full bg-cover bg-center bg-no-repeat rounded-lg relative overflow-hidden group"
                             style="background-image: url({t.background}); transform: scale(0.95)"
                         >
-                            <!-- Overlay for better text readability -->
                             <div
-                                class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30"
+                                class="absolute bg-gradient-to-b from-black/20 via-transparent to-black/30"
                             ></div>
 
-                            <!-- Card Header -->
                             <div
-                                class="h-1/3 flex items-center justify-center p-2 relative z-10"
+                                class="h-1/3 flex items-center justify-center relative z-10"
                             >
                                 <h2
-                                    class="text-sm sm:text-3xl font-bold text-center text-white drop-shadow-lg transform group-hover:scale-105 duration-200"
+                                    class="text-3xl font-bold text-center transform group-hover:scale-105 duration-200"
+                                    class:text-white={tcc.colors.get(t.id) ===
+                                        "white"}
+                                    class:text-black={tcc.colors.get(t.id) ===
+                                        "black"}
                                 >
                                     {t.title}
                                 </h2>
                             </div>
-
-                            <!-- Card Body -->
-                            <div
-                                class="h-2/3 flex items-center justify-center p-2 relative z-10"
-                            >
-                                <p
-                                    class="text-xs sm:text-xl text-gray-100 text-center leading-tight drop-shadow-md px-1"
-                                >
-                                    {t.description}
-                                </p>
-                            </div>
-
-                            <!-- Decorative corner accent -->
                             <div
                                 class="absolute top-2 right-2 w-3 h-3 bg-white/20 rounded-full opacity-0 group-hover:opacity-100 duration-300"
                             ></div>
