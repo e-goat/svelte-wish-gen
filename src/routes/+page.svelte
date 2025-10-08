@@ -1,6 +1,7 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import Loader from "$lib/components/Loader.svelte";
+    import openerLogo from "$lib/assets/opener-logo.svg";
 
     let isLoading = false;
 
@@ -160,9 +161,9 @@
                     class="relative w-96 h-[269px] max-md:w-80 max-md:h-[223px] max-sm:h-[195px] max-sm:w-[280px]"
                 >
                     <img
-                        src="https://api.builder.io/api/v1/image/assets/TEMP/87ce7e75ef06072df0a59f210eef12fbae347876?width=768"
-                        alt="Greeting card preview"
-                        class="object-cover shrink-0 w-96 h-[269px] max-md:w-80 max-md:h-[223px] max-sm:h-[195px] max-sm:w-[280px]"
+                        src={openerLogo}
+                        alt="Opener logo"
+                        class="absolute top-0 left-0 w-full h-full"
                     />
                 </div>
                 <div
