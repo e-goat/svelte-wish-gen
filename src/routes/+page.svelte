@@ -27,7 +27,7 @@
         <div
             class="text-4xl font-medium text-center text-zinc-800 max-md:text-3xl max-sm:text-2xl"
         >
-            Поздравителна картичка с вашия личен почерк.
+            Поздравителна картичка с вашия личен почерк
         </div>
         <div>
             <svg
