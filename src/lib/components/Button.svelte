@@ -1,19 +1,19 @@
 <script lang="ts">
-    import Loader from './Loader.svelte';
-    
-    export let ariaLabel: string
-    export let text: string
-    export let clickEvent: ((event: MouseEvent) => void) | undefined = undefined
+    import Loader from "./Loader.svelte";
+
+    export let ariaLabel: string;
+    export let text: string;
+    export let clickEvent: ((event: MouseEvent) => void) | undefined =
+        undefined;
     export let float:
-        |
-        'right' |
-        'left' |
-        'start' |
-        'inline-start' |
-        'inline-end' |
-        'none' = 'none'
+        | "right"
+        | "left"
+        | "start"
+        | "inline-start"
+        | "inline-end"
+        | "none" = "none";
     export let disabled: boolean = false;
-    export let buttonType: 'button' | 'submit';
+    export let buttonType: "button" | "submit";
     export let loading: boolean = false;
 </script>
 
@@ -23,9 +23,10 @@
     onclick={clickEvent}
     class:disable={disabled || loading}
     disabled={disabled || loading}
-    type={buttonType}>
+    type={buttonType}
+>
     {#if loading}
-        <Loader size="sm" color="white" />
+        <Loader size="sm" color="black" />
     {:else}
         {text}
     {/if}

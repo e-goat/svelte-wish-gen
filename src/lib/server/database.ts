@@ -1,8 +1,7 @@
 import { PrismaClient, Prisma } from "$lib/db";
 import { error } from "@sveltejs/kit";
-import { withAccelerate } from "@prisma/extension-accelerate";
 
-const prisma = new PrismaClient().$extends(withAccelerate());
+const prisma = new PrismaClient();
 
 export async function getCardBySlug(slug: string) {
     return prisma.card.findUnique({
@@ -25,10 +24,6 @@ export async function getAllTemplates(limit: number, skip: number) {
             take: limit,
             skip: skip,
             orderBy: { createdAt: "desc" },
-            // cacheStrategy: {
-            //     ttl: 60 * 60 * 24, // seconds * mins * hours
-            //     tags: ["card_templates"],
-            // },
         }),
         prisma.template.count(),
     ]);
@@ -50,10 +45,6 @@ export async function getAllTemplatesByType(
             skip,
             where: { type },
             orderBy: { createdAt: "desc" },
-            // cacheStrategy: {
-            //     ttl: 60 * 60 * 24, // seconds * mins * hours
-            //     tags: ["filter_template_category"],
-            // },
         }),
         prisma.template.count({ where: { type } }),
     ]);

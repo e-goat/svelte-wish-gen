@@ -158,15 +158,14 @@
                 class="bg-gradient-to-br from-green-400/50 to-emerald-500/30 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 backdrop-blur-sm border border-green-200/50 shadow-xl"
                 in:scale={{ duration: 800, delay: 300 }}
             >
-                <!-- Vision Header -->
                 <div class="text-center mb-8 sm:mb-10">
                     <h2
-                        class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6"
+                        class="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-4 sm:mb-6"
                     >
                         Нашата визия
                     </h2>
                     <p
-                        class="text-base sm:text-lg lg:text-xl text-white/95 leading-relaxed"
+                        class="text-base sm:text-lg lg:text-xl text-black/95 leading-relaxed"
                     >
                         "Да революционизираме начина, по който хората се
                         свързват, като направим всяка поздравителна картичка

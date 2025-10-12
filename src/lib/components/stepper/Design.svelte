@@ -101,53 +101,42 @@
                 >
             {/each}
         </section>
-        <ul
-            class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4 h-[460px] overflow-auto"
-        >
+        <ul class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {#each data.templates as t}
                 <li>
                     <button
                         type="button"
+                        class="w-full h-60 rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:cursor-pointer relative border bg-cover bg-center"
+                        class:border-solid={t.id == cs.templateId}
+                        class:border-custom-orange-600={t.id == cs.templateId}
+                        class:border-transparent={t.id != cs.templateId}
+                        style="background-image: url('{t.background}');"
                         onclick={handleClickEvent}
                         data-template-id={t.id}
-                        class={[
-                            "h-full",
-                            "w-full",
-                            "rounded-xl",
-                            "shadow-sm",
-                            "items-center",
-                            "bg-white",
-                            "cursor-pointer",
-                            t.id == cs.templateId
-                                ? "border border-solid border-custom-orange-600"
-                                : "border border-transparent",
-                        ].join(" ")}
                     >
+                        <!-- Gradient overlay for readability -->
                         <div
-                            class="wish-card h-full w-full bg-cover bg-center bg-no-repeat rounded-lg relative overflow-hidden group"
-                            style="background-image: url({t.background}); transform: scale(0.95)"
-                        >
-                            <div
-                                class="absolute bg-gradient-to-b from-black/20 via-transparent to-black/30"
-                            ></div>
+                            class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30"
+                        ></div>
 
-                            <div
-                                class="h-1/3 flex items-center justify-center relative z-10"
+                        <!-- Card text -->
+                        <div
+                            class="absolute inset-0 flex items-center justify-center"
+                        >
+                            <h2
+                                class="text-lg font-bold text-center px-4"
+                                class:text-white={tcc.colors.get(t.id) ===
+                                    "white"}
+                                class:text-black={tcc.colors.get(t.id) ===
+                                    "black"}
                             >
-                                <h2
-                                    class="text-3xl font-bold text-center transform group-hover:scale-105 duration-200"
-                                    class:text-white={tcc.colors.get(t.id) ===
-                                        "white"}
-                                    class:text-black={tcc.colors.get(t.id) ===
-                                        "black"}
-                                >
-                                    {t.title}
-                                </h2>
-                            </div>
-                            <div
-                                class="absolute top-2 right-2 w-3 h-3 bg-white/20 rounded-full opacity-0 group-hover:opacity-100 duration-300"
-                            ></div>
+                                {t.title}
+                            </h2>
                         </div>
+
+                        <div
+                            class="absolute top-3 right-3 w-3 h-3 bg-white/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        ></div>
                     </button>
                 </li>
             {/each}
