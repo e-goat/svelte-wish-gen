@@ -1,6 +1,7 @@
 <script lang="ts">
     import { cs } from "$lib/state.svelte";
     import { getContrastingColor } from "$lib/utils/helpers";
+    import { onMount } from "svelte";
 
     interface Props {
         cardFront?: string;
@@ -18,6 +19,7 @@
 
     let isOpened = $state(false);
     let isTransitioning = $state(false);
+    let isRotationPaused = $state(false);
     let textColor = $state("black");
     let frontElement = $state<HTMLDivElement>();
 
@@ -31,6 +33,12 @@
         setTimeout(() => {
             isTransitioning = false;
         }, 600);
+    }
+
+    function toggleRotation(e: MouseEvent) {
+        e.stopPropagation();
+        e.preventDefault();
+        isRotationPaused = !isRotationPaused;
     }
 
     // Update text color when front element or cardFront changes
@@ -48,15 +56,64 @@
             }
         }
     });
+
+    onMount(async () => {
+        const boxFront: HTMLElement | null = document.querySelector(
+            "#wish-card-preview .box-holder .box--front",
+        );
+        const boxBack: HTMLElement | null = document.querySelector(
+            "#wish-card-preview .box-holder .box--back",
+        );
+        const wishcardContainer: HTMLElement | null = document.querySelector(
+            "#wishcard-container",
+        );
+
+        boxFront!.addEventListener("mouseenter", (e) => {
+            if (!wishcardContainer?.classList.contains("hovered")) {
+                wishcardContainer?.classList.add("hovered");
+            }
+        });
+
+        boxFront!.addEventListener("mouseout", (e) => {
+            if (wishcardContainer?.classList.contains("hovered")) {
+                wishcardContainer?.classList.remove("hovered");
+            }
+        });
+    });
 </script>
 
 <div
-    class="wishcard-container"
+    id="wishcard-container"
     onclick={toggleCard}
     onkeydown={(e) => e.key === "Enter" && toggleCard()}
     role="button"
     tabindex="0"
 >
+    {#if !isOpened}
+        <button
+            class="rotate-control-btn"
+            onclick={toggleRotation}
+            aria-label={isRotationPaused ? "Resume rotation" : "Pause rotation"}
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="rotate-icon"
+                class:paused={isRotationPaused}
+            >
+                <path
+                    d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"
+                />
+            </svg>
+        </button>
+    {/if}
     {#if isOpened}
         <div class="opened-card">
             <div class="card-content">
@@ -294,6 +351,7 @@
         <div
             class="box-holder"
             class:transitioning={isTransitioning}
+            class:paused={isRotationPaused}
             style="--card-front-img: url({cardFront}); --card-back-img: url({cardBack});"
         >
             <div
@@ -311,16 +369,10 @@
                     {cs.title || title}
                 </h1>
             </div>
-            <div
-                class="box--side-left bg-custom-teal-300 border-2 border-black"
-            ></div>
-            <div
-                class="box--side-right bg-custom-teal-300 border-2 border-black"
-            ></div>
-            <div class="box--top bg-custom-teal-300"></div>
-            <div
-                class="box--bottom bg-custom-teal-300 border-2 border-black"
-            ></div>
+            <div class="box--side-left bg-white border-2 border-black"></div>
+            <div class="box--side-right bg-white border-2 border-black"></div>
+            <div class="box--top bg-white"></div>
+            <div class="box--bottom bg-white border-2 border-black"></div>
             <div class="box--back border-2 border-black bg-white">
                 <div
                     class="flex flex-col items-center justify-center h-full p-4 text-center"
@@ -368,7 +420,7 @@
         }
     }
 
-    .wishcard-container {
+    #wishcard-container {
         position: relative;
         perspective: 1200px;
         background: radial-gradient(
@@ -386,7 +438,7 @@
         cursor: pointer;
     }
 
-    .wishcard-container:has(.opened-card) {
+    #wishcard-container:has(.opened-card) {
         min-height: fit-content;
         margin: 1rem 0;
     }
@@ -404,7 +456,11 @@
         transform: rotateY(0deg);
     }
 
-    .wishcard-container:hover .box-holder:not(.transitioning) {
+    .box-holder.paused {
+        animation-play-state: paused;
+    }
+
+    #wishcard-container:has(.hovered) {
         animation-play-state: paused;
         transform: rotateY(0deg);
     }
@@ -699,5 +755,45 @@
         text-shadow:
             0 2px 4px rgba(0, 0, 0, 0.8),
             0 1px 2px rgba(0, 0, 0, 0.6);
+    }
+
+    .rotate-control-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 10;
+        background: white;
+        border: 2px solid #d1d5db;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition:
+            background-color 0.2s,
+            border-color 0.2s,
+            transform 0.2s;
+    }
+
+    .rotate-control-btn:hover {
+        background: #f3f4f6;
+        border-color: #9ca3af;
+        transform: scale(1.05);
+    }
+
+    .rotate-control-btn:active {
+        transform: scale(0.95);
+    }
+
+    .rotate-icon {
+        color: #374151;
+        transition: opacity 0.2s;
+    }
+
+    .rotate-icon.paused {
+        opacity: 0.5;
     }
 </style>
